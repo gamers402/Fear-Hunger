@@ -1,0 +1,394 @@
+#Fear & Kaisen
+
+import time, sys, random
+
+#slowscroll input
+
+x = ()
+y = ()
+enemy_health = 150
+player_health = 200
+slow_scroll_speed = 0
+damage = 0
+damage_enemy_1 = 0
+damage_enemy_2 = 0
+input_player = ()
+bleeding_player = False
+bleeding_enemy = False
+defense = False
+turns = 0
+black_flash = False
+black_flash_profiency = 4
+focus = 1
+turns_flash = False
+turns_flash_counter = 0
+infinity = False
+infinity_counter = False
+enemy_charge = False
+turn_it_off = False
+
+def random_dialogue():
+    x = random.randint(1, 8)
+    if x == 1:
+        slow_scroll("the creatures eyes scan your body rapidly...")
+    if x == 2:
+         slow_scroll("the creature lowers its stance with a ragged breath...")
+    if x == 3:
+        slow_scroll("the smell of mold and rot attack your senses...")
+    if x == 4:
+        slow_scroll("you hear the woman take a weak, shallow breath...")
+    if x == 5:
+        slow_scroll("a gentle cold wind flows in from behind you... the exit is only a dash away...")
+    if x == 6:
+        slow_scroll("your hands shake for a moment...")
+    if x == 7 and turns >= 3:
+        slow_scroll("you're growing fatigued...")
+    if x == 8:
+        slow_scroll("the woman tries to speak, to no avail...")
+
+while x != "Y" and x != "N":
+    x = input("would you like scroll text? (scroll is not reccomended) (Y/N):").upper()
+    print("-----------------------------------------------------------------")
+    print()
+    if x == "Y":
+        print("understood...")
+        print()
+        slow_scroll_speed = float(input("how fast would you like scroll test? please stick from the range 1 - 0.01 (1/0.1 would be slow... 0.01 would be fast): "))
+        def slow_scroll(str):
+                for letter in str:
+                    sys.stdout.write(letter)
+                    sys.stdout.flush()
+                    time.sleep(slow_scroll_speed)
+    elif x == "N":
+        print("understood...")
+        def slow_scroll(str):
+            for letter in str:
+                sys.stdout.write(letter)
+                sys.stdout.flush()
+                time.sleep(slow_scroll_speed)
+print()
+slow_scroll("as you traverse the dungeons of Fear & Hunger you come across two corpses. the corpse on the left seems decapitated with it's head still rolling before coming to a stop. the corpse on the right has a fresh laceration, her blood staining the ground you stand on. the corpses chest is still rising and falling...")
+print()
+slow_scroll("as you take a step towards the barely alive woman, the once rolling head now squirms to the decapited corpse on the left. It slithers inside as the corpse, now reanimated, stands up. it locks eyes with you through its matted hair")
+print()
+print()
+slow_scroll("do you want skill *black flash*? (Y/N)")
+print()
+print()
+skill_input_choice = input("").upper()
+if skill_input_choice == "Y":
+    black_flash = True
+    print()
+    slow_scroll("black flash equipped")
+    print()
+print()
+slow_scroll("do you want skill *infinity*? (Y/N)")
+print()
+print()
+skill_input_choice = input("").upper()
+if skill_input_choice == "Y":
+    print()
+    infinity = True
+    slow_scroll("infinity equiped")
+    print()
+    print()
+print()
+while enemy_health > 1 and player_health > 1:
+  turns = turns + 1
+  print()
+  print()
+  slow_scroll(f">{player_health} HP")
+  print()
+  slow_scroll(f">{focus} focus")
+  print()
+  print()
+  slow_scroll("what do you do?")
+  print()
+  print()
+  slow_scroll("(attack)")
+  slow_scroll("(defend)")
+  slow_scroll("(skill)")
+  slow_scroll("(item)")
+  slow_scroll("(run)")
+  slow_scroll("(focus)")
+  print()
+  print()
+  if bleeding_player == True:
+      print()
+      bleeding_player_damage = random.randint(5, 10)
+      player_health = player_health - bleeding_player_damage
+      if turns == 1:
+       slow_scroll(f"a sharp pain reminds you of your bleeding... you take {bleeding_player_damage} damage")
+      else:
+       slow_scroll(f"you take {bleeding_player_damage} damage...")
+      print()
+      print()
+  input_player = input("").lower()
+  print()
+  if input_player == "skill":
+      player_hit_chance = random.randint(1, 20)
+      print()
+      if infinity == True:
+          slow_scroll("[infinity] - 1  *2*")
+          print()
+      if black_flash == True:
+          slow_scroll("[black flash] - 2  *1*")
+          print()
+      if black_flash == False and infinity == False:
+          slow_scroll("no skills equiped.(press enter)")
+      print()
+      print()
+      if turns == 1:
+          slow_scroll("enter 1 or 2")
+          print()
+          print()
+      input_player_skill = input("")
+      print()
+      print()
+      if input_player_skill == "1":
+         if focus >= 2:
+          focus = focus - 2
+          slow_scroll("you briefly close your eyes and materlize the concept of infinity as an infinitely dense mass of air around you... ")
+          infinity_counter = True
+         elif focus < 2:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "2":
+         if focus >= 1:
+          focus = focus - 1
+          slow_scroll("you draw your fist back and...")
+          if player_hit_chance == 1:
+              print()
+              slow_scroll(" miss...")
+          else:
+              black_flash_chance = random.randint(1, black_flash_profiency)
+              if black_flash_chance == 1 and black_flash_profiency > 1:
+                  print()
+                  slow_scroll("hit a black flash! sparks fly, your profiency increases.")
+                  focus = focus + 1
+                  damage = random.randint(25, 35)
+                  damage = round(damage * 3)
+                  if focus >= 1:
+                      damage = round(damage * 1.3)
+                  enemy_health = enemy_health - damage
+                  print()
+                  print()
+                  slow_scroll(f"the enemy takes {damage} damage!")
+                  print()
+                  print()
+              elif black_flash_chance == 1 and black_flash_profiency == 1:
+                  print()
+                  slow_scroll("black flash!")
+                  focus = focus + 1
+                  damage = random.randint(25, 35)
+                  if focus >= 1:
+                      damage = round(damage * 1.3)
+                  damage = round(damage * 3)
+                  enemy_health = enemy_health - damage
+                  print()
+                  print()
+                  slow_scroll(f"the enemy takes {damage} damage!")
+                  print()
+                  print()
+              else:
+                  print()
+                  slow_scroll("hit! but no sparks... regardless, your profiency inreases.")
+                  damage = random.randint(20, 25)
+                  if focus >= 1:
+                      damage = round(damage * 1.3)
+                  enemy_health = enemy_health - damage
+                  print()
+                  print()
+                  slow_scroll(f"the enemy takes {damage} damage!")
+                  print()
+                  print()
+              if black_flash_profiency == 4:
+                  print()
+                  slow_scroll("your fist stings... you take 5 damage. you feel closer to the sparks...")
+              if black_flash_profiency == 3:
+                  print()
+                  slow_scroll("you're beginning to feel comfertable hitting black flashes... it no longer stings...")
+              if black_flash_profiency == 2:
+                  print()
+                  slow_scroll("you are on the brink of perfection...")
+              if black_flash_profiency == 1 and turns_flash == True:
+                  print()
+                  turns_flash_counter = turns_flash_counter + 1
+                  slow_scroll(f"you've hit {turns_flash_counter} consequtive black flashes!")
+                  if turns_flash_counter >= 9:
+                      print()
+                      print()
+                      slow_scroll("you break the record for consequtive black flashes!")
+                      print()
+                      print()
+              if black_flash_profiency == 1 and turns_flash == False:
+                  print()
+                  turns_flash = True
+                  turns_flash_counter = turns_flash_counter + 1
+                  damage = random.randint(25, 35)
+                  damage = round(damage * 2.5)
+                  if focus >= 1:
+                      damage = round(damage * 1.3)
+                  enemy_health = enemy_health - damage
+                  slow_scroll(f"the enemy takes {damage} damage!")
+                  print()
+                  print()
+                  slow_scroll(f"you've hit {turns_flash_counter} consequtive black flashes!")
+                  print()
+                  print()
+                  slow_scroll("under the sparks of black, you've perfected your technique...")
+              black_flash_profiency = black_flash_profiency - 1
+              if black_flash_profiency == 0:
+                  black_flash_profiency = black_flash_profiency + 1
+         elif focus < 1:
+             print()
+             slow_scroll("you've got no focus points...")
+             print()
+  if input_player == "focus":
+      if focus == 0:
+       slow_scroll("you take a deep breath...")
+       focus = focus + 1
+      elif focus == 1:
+       slow_scroll("everything but the creature blurs... you are only focused on it...")
+       focus = focus + 1
+      elif focus == 2:
+       slow_scroll("you've reached flow... everything is still...")
+       focus = focus + 1
+      if focus >= 3:
+       slow_scroll("you can't focus more than this.")
+      print()
+  if input_player == "run":
+      print()
+      slow_scroll("your fight or flight kicks in... you choose flight as you attempt to flee...")
+      print()
+      print()
+      flee_attempt = random.randint(1, 10)
+      if flee_attempt == 1:
+          slow_scroll("you succesfully ran away...")
+          print()
+          time.sleep(3)
+          sys.exit()
+      else:
+          slow_scroll("your attempt was unsuccesful...")
+          print()
+  if input_player == "attack":
+      player_hit_chance = random.randint(1, 20)
+      if player_hit_chance == 1:
+          print()
+          slow_scroll("you swing... you miss...")
+      else:
+       crit_chance = random.randint(1, 10)
+       print()
+       if crit_chance == 1:
+           if turns == 1:
+               print()
+               slow_scroll("you unsheath your blade...")
+               print()
+           bleeding_enemy = True
+           damage = random.randint(25, 35)
+           damage = round(damage * 2)
+           if focus >= 1:
+                      damage = round(damage * 1.3)
+           enemy_health = enemy_health - damage
+           slow_scroll(f"you plunge your sword into the creature, hitting an artery & dealing {damage} damage!")
+       else:
+           damage = random.randint(25, 35)
+           if focus >= 1:
+                      damage = round(damage * 1.3)
+           enemy_health = enemy_health - damage
+           slow_scroll(f"you plunge your sword into the creature. dealing {damage} damage")
+       print()
+  elif input_player == "defend":
+      print()
+      slow_scroll("you raise your buckler in defense")
+      print()
+      defense = True
+  print()
+  print()
+  random_dialogue()
+  print()
+  enemy_hit_chance = random.randint(1, 20)
+  input_enemy = random.randint(1, 5)
+  if enemy_charge == True:
+      input_enemy = 5
+  if bleeding_enemy == True:
+      print()
+      bleeding_enemy_damage = random.randint(10,15)
+      enemy_health = enemy_health - bleeding_enemy_damage
+      slow_scroll(f"blood trickles from it's open wound... dealing {bleeding_enemy_damage} damage")
+  if input_enemy == 4:
+      print()
+      slow_scroll("the thing glares at you...")
+      print()
+  if input_enemy == 1 or input_enemy == 2 or input_enemy == 3:
+     if infinity_counter == True:
+          print()
+          slow_scroll("the creature lunges at you... before slowing down and coming to a complet stop right in front of you...")
+          infinity_counter = False
+     else:
+      if enemy_hit_chance == 1:
+          print()
+          slow_scroll("the creature lunges at you... you dodge")
+          print()
+      else:
+       damage_enemy_1 = random.randint(20, 35)
+       damage_enemy_2 = random.randint(20, 35)
+       crit_chance_enemy = random.randint(1, 15)
+       print()
+       if crit_chance_enemy == 1:
+           bleeding_player = True
+           damage_enemy_1 = round((damage_enemy_1) * 2)
+           damage_enemy_2 = round((damage_enemy_2) * 2)
+           if defense == True:
+               damage_enemy_1 = round(damage_enemy_1 / 2)
+               damage_enemy_2 = round(damage_enemy_2 / 2)
+               bleeding_player = False
+           if focus == 3:
+               damage_enemy_1 = round(damage_enemy_1 / 1.3)
+               damage_enemy_2 = round(damage_enemy_2 / 1.3)
+               bleeding_player = False
+           player_health = player_health - (damage_enemy_1 + damage_enemy_2)
+           slow_scroll(f"the creature slashes wildy at you. Its chiped nails dig into your neck, hitting an artery. dealing {damage_enemy_1} & {damage_enemy_2} damage.")
+       else:
+           if defense == True:
+               damage_enemy_1 = round(damage_enemy_1 / 2)
+               damage_enemy_2 = round(damage_enemy_2 / 2)
+           if focus == 3:
+               damage_enemy_1 = round(damage_enemy_1 / 1.3)
+               damage_enemy_2 = round(damage_enemy_2 / 1.3)
+           player_health = player_health - (damage_enemy_1 + damage_enemy_2)
+           slow_scroll(f"the creature slashes wildy at you. dealing {damage_enemy_1} & {damage_enemy_2} damage")
+       print()
+       print()
+  if input_enemy == 5 and enemy_charge == True:
+      turn_it_off = True
+      slow_scroll("the thing quickly lunges at you!")
+      print()
+      if infinity_counter == True:
+          slow_scroll("right as its nails are about to dig into your eyes, it slows down to a complete stop... it tries to pull away but can't")
+          print()
+      else:
+          slow_scroll("its nails dig into your throat and rips out your esophagus...")
+          print()
+          slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
+          print()
+          slow_scroll("you've died...")
+          print()
+          time.sleep(5)
+          sys.exit()
+          print()
+  if input_enemy == 5 and enemy_charge == False:
+      slow_scroll("the thing lowers its stance & brings its arms back...")
+      enemy_charge = True
+  if turn_it_off == True:
+      enemy_charge = False
+      turn_it_off = False
+  infinity_counter = False
+print()
+print()
+if player_health >= 1:
+ slow_scroll("the creature falls to the ground... you've won")
+else:
+ slow_scroll("you take your last breath... you've died")
+time.sleep(4)
