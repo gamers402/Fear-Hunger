@@ -26,9 +26,12 @@ infinity = False
 infinity_counter = False
 enemy_charge = False
 turn_it_off = False
+lady_death = False
+malevolant = False
+shrine = False
 
 def random_dialogue():
-    x = random.randint(1, 8)
+    x = random.randint(1, 9)
     if x == 1:
         slow_scroll("the creatures eyes scan your body rapidly...")
     if x == 2:
@@ -45,6 +48,8 @@ def random_dialogue():
         slow_scroll("you're growing fatigued...")
     if x == 8:
         slow_scroll("the woman tries to speak, to no avail...")
+    if x == 9:
+        slow_scroll("the creatures face twists to that of hunger...")
 
 while x != "Y" and x != "N":
     x = input("would you like scroll text? (scroll is not reccomended) (Y/N):").upper()
@@ -74,6 +79,9 @@ print()
 print()
 slow_scroll("do you want skill *black flash*? (Y/N)")
 print()
+print("---------------------------------------")
+slow_scroll("black flash is an occurance. when punching an enemy and expelling energy at the same time critical damage is dealt. the window to exert this energy is small and difficult to hit, although as you keep using it the window expands... also, if mastered in tanjent with malevolent shrine. an extra skill is learnt. costs some focus.")
+print()
 print()
 skill_input_choice = input("").upper()
 if skill_input_choice == "Y":
@@ -84,6 +92,9 @@ if skill_input_choice == "Y":
 print()
 slow_scroll("do you want skill *infinity*? (Y/N)")
 print()
+print("-------------------------------------")
+slow_scroll("the ability to make a barrier around you. this barriar is infinte, so anything that passes by will slow down until at a complete stop. although it is short lasting... costs large focus")
+print()
 print()
 skill_input_choice = input("").upper()
 if skill_input_choice == "Y":
@@ -93,14 +104,27 @@ if skill_input_choice == "Y":
     print()
     print()
 print()
+slow_scroll("do you want skill *domain expansion: malevolant shrine*? (Y/N)")
+print()
+print("-------------------------------------")
+slow_scroll("a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevnet shrine that sure-hit is a series of continous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learnt... costs all focus")
+print()
+print()
+skill_input_choice = input("").upper()
+if skill_input_choice == "Y":
+    print()
+    malevolant = True
+    slow_scroll("malevolant shrine equipped")
+    print()
+    print()
 while enemy_health > 1 and player_health > 1:
   turns = turns + 1
-  print()
   print()
   slow_scroll(f">{player_health} HP")
   print()
   slow_scroll(f">{focus} focus")
   print()
+  slow_scroll(f">{enemy_health} Hp left")
   print()
   slow_scroll("what do you do?")
   print()
@@ -109,8 +133,9 @@ while enemy_health > 1 and player_health > 1:
   slow_scroll("(defend)")
   slow_scroll("(skill)")
   slow_scroll("(item)")
-  slow_scroll("(run)")
   slow_scroll("(focus)")
+  slow_scroll("(talk)")
+  slow_scroll("(run)")
   print()
   print()
   if bleeding_player == True:
@@ -125,21 +150,54 @@ while enemy_health > 1 and player_health > 1:
       print()
   input_player = input("").lower()
   print()
+  if input_player == "talk":
+      print()
+      slow_scroll("you attempt to talk to the thing...")
+      print()
+      slow_scroll("the woman seems to be looking at you")
+      print()
+      slow_scroll("'wait! there's no need to fight' *1*")
+      print()
+      slow_scroll("'prepare to die' *2*")
+      print()
+      slow_scroll("'can you move, lady?' *3*")
+      print()
+      slow_scroll("or kill the lady *4*")
+      print()
+      print()
+      input_player_talk = input("")
+      print()
+      print()
+      if input_player_talk == "1":
+          slow_scroll("the thing doesn't seem to understand you, instead, it approaches you.")
+      if input_player_talk == "2":
+          slow_scroll("the thing doesn't respond... it's eyes instead lingering on your throat.")
+      if input_player_talk == "3":
+          slow_scroll("the lady opens her mouth, but blood replaces words as her body tries to clear her lungs...")
+      if input_player_talk == "4":
+          slow_scroll("you walk over to the lady and simply place your sword in her throat")
+          print()
+          slow_scroll("she looks up with a mixture of resentment & relief... she's dead.")
+          lady_death = True
+      print()
   if input_player == "skill":
       player_hit_chance = random.randint(1, 20)
       print()
       if infinity == True:
-          slow_scroll("[infinity] - 1  *2*")
+          slow_scroll("[infinity] - 1")
           print()
       if black_flash == True:
-          slow_scroll("[black flash] - 2  *1*")
+          slow_scroll("[black flash] - 2")
           print()
-      if black_flash == False and infinity == False:
+      if malevolant == True:
+          slow_scroll("[malevolant shrine] - 3")
+          print()
+      if black_flash == False and infinity == False and malevolant == False:
           slow_scroll("no skills equiped.(press enter)")
       print()
       print()
       if turns == 1:
-          slow_scroll("enter 1 or 2")
+          slow_scroll("enter corresponding number. for example infinty would be 1 and black flash would be 2")
           print()
           print()
       input_player_skill = input("")
@@ -151,6 +209,15 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("you briefly close your eyes and materlize the concept of infinity as an infinitely dense mass of air around you... ")
           infinity_counter = True
          elif focus < 2:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "3":
+         if focus >= 3:
+          focus = focus - 3
+          slow_scroll("you bring your hands together in a unique formation as the area around you turns pitch black. everything but the creature and the woman is gone as a shrine erupts from the darkness behind you... the scene returns to normal but the shrine remains as a wave of exhaustion floods your body...")
+          shrine = True
+         elif focus < 3:
              print()
              slow_scroll("you aren't focused enough...")
              print()
@@ -177,6 +244,10 @@ while enemy_health > 1 and player_health > 1:
                   slow_scroll(f"the enemy takes {damage} damage!")
                   print()
                   print()
+                  if black_flash_profiency == 3:
+                      slow_scroll("as you punch lands, suddenly a second punch echos, divergent fist!")
+                      print()
+                  black_flash_profiency = black_flash_profiency - 2
               elif black_flash_chance == 1 and black_flash_profiency == 1:
                   print()
                   slow_scroll("black flash!")
@@ -206,6 +277,8 @@ while enemy_health > 1 and player_health > 1:
               if black_flash_profiency == 4:
                   print()
                   slow_scroll("your fist stings... you take 5 damage. you feel closer to the sparks...")
+                  player_health - player_health - 5
+                  black_flash_profiency = black_flash_profiency - 1
               if black_flash_profiency == 3:
                   print()
                   slow_scroll("you're beginning to feel comfertable hitting black flashes... it no longer stings...")
@@ -238,9 +311,10 @@ while enemy_health > 1 and player_health > 1:
                   print()
                   print()
                   slow_scroll("under the sparks of black, you've perfected your technique...")
-              black_flash_profiency = black_flash_profiency - 1
               if black_flash_profiency == 0:
                   black_flash_profiency = black_flash_profiency + 1
+              if black_flash_profiency == -1:
+                  black_flash_profiency = black_flash_profiency + 2
          elif focus < 1:
              print()
              slow_scroll("you've got no focus points...")
@@ -287,6 +361,11 @@ while enemy_health > 1 and player_health > 1:
                print()
            bleeding_enemy = True
            damage = random.randint(25, 35)
+           if black_flash_profiency == 1:
+               print()
+               slow_scroll("your slash leaves remnants of black sparks...")
+               print()
+               damage = damage * 1.3
            damage = round(damage * 2)
            if focus >= 1:
                       damage = round(damage * 1.3)
@@ -294,6 +373,11 @@ while enemy_health > 1 and player_health > 1:
            slow_scroll(f"you plunge your sword into the creature, hitting an artery & dealing {damage} damage!")
        else:
            damage = random.randint(25, 35)
+           if black_flash_profiency == 1:
+               print()
+               slow_scroll("your slash leaves remnants of black sparks...")
+               print()
+               damage = damage * 1.3
            if focus >= 1:
                       damage = round(damage * 1.3)
            enemy_health = enemy_health - damage
@@ -308,6 +392,28 @@ while enemy_health > 1 and player_health > 1:
   print()
   random_dialogue()
   print()
+  if shrine == True:
+      damage = random.randint(20, 30)
+      if black_flash_profiency == 2:
+          damage = round(damage * 1.3)
+          print()
+          slow_scroll("some of the slashes are triggering small black flashes.")
+          print()
+      if black_flash_profiency == 1:
+          damage = round(damage * 1.5)
+          print()
+          slow_scroll("among the series of slashes, dark sparks fly everywhere...")
+          print()
+      enemy_health = enemy_health - damage
+      slow_scroll(f"a series of slashes assault the creature... it's left riddled in gashes... {damage} damage dealt")
+      print()
+      if lady_death == False:
+          slow_scroll("the slashes attack the lady as well... she's dead.")
+          print()
+          lady_death = True
+      elif lady_death == True:
+          slow_scroll("the lady is mutilated further...")
+          print()
   enemy_hit_chance = random.randint(1, 20)
   input_enemy = random.randint(1, 5)
   if enemy_charge == True:
@@ -369,6 +475,9 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("right as its nails are about to dig into your eyes, it slows down to a complete stop... it tries to pull away but can't")
           print()
       else:
+       if defense == True:
+         grab_chance = random.randint(1, 2)
+         if grab_chance == 1:
           slow_scroll("its nails dig into your throat and rips out your esophagus...")
           print()
           slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
@@ -378,6 +487,18 @@ while enemy_health > 1 and player_health > 1:
           time.sleep(5)
           sys.exit()
           print()
+         if grab_chance == 2:
+           slow_scroll("your buckler just barely blocks the attack...")
+           print()
+       else:
+           slow_scroll("its nails dig into your throat and rips out your esophagus...")
+           print()
+           slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
+           print()
+           slow_scroll("you've died...")
+           print()
+           time.sleep(5)
+           sys.exit()
   if input_enemy == 5 and enemy_charge == False:
       slow_scroll("the thing lowers its stance & brings its arms back...")
       enemy_charge = True
@@ -385,6 +506,7 @@ while enemy_health > 1 and player_health > 1:
       enemy_charge = False
       turn_it_off = False
   infinity_counter = False
+  defense = False
 print()
 print()
 if player_health >= 1:
