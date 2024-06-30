@@ -1,6 +1,6 @@
 #Fear & Kaisen
 
-import time, sys, random
+import time, sys, random, platform
 
 #slowscroll input
 
@@ -27,7 +27,7 @@ infinity_counter = False
 enemy_charge = False
 turn_it_off = False
 lady_death = False
-malevolant = False
+malevolent = False
 shrine = False
 rebirth = False
 reverse_healing = False
@@ -45,9 +45,12 @@ placeholder_heal = False
 input_true = True
 coin_flip_result_2 = True
 end = False
+rher = True
+gro_goroth = False
+sylvian = False
 
 def random_dialogue():
-    x = random.randint(1, 9)
+    x = random.randint(1, 12)
     if x == 1:
         slow_scroll("the creatures eyes scan your body rapidly...")
     if x == 2:
@@ -68,16 +71,21 @@ def random_dialogue():
         slow_scroll("the creatures face twists to that of hunger...")
     if x == 10:
         slow_scroll("...")
+    if x == 11 and rher == True:
+        slow_scroll("your left feild of vision flashes static")
+    if x == 12 and rher == True:
+        slow_scroll("your left eye stings in pain for a moment")
 
 while x != "Y" and x != "N":
-    x = input("would you like scroll text? (scroll is not reccomended) (Y/N):").upper()
+    x = input("would you like scroll text? (scroll is reccomended) (Y/N):").upper()
     print("-----------------------------------------------------------------")
     print()
     if x == "Y":
         print("understood...")
         print()
-        slow_scroll_speed = float(input("how fast would you like scroll test? please stick from the range 1 - 0.01 (1/0.1 would be slow... 0.01 would be fast): "))
-        def slow_scroll(str):
+        while slow_scroll_speed <= 0.009:
+         slow_scroll_speed = float(input("how fast would you like scroll test? please stick from the range 1 - 0.01 (1/0.1 would be slow... 0.01 would be fast): "))
+         def slow_scroll(str):
                 for letter in str:
                     sys.stdout.write(letter)
                     sys.stdout.flush()
@@ -90,7 +98,24 @@ while x != "Y" and x != "N":
                 sys.stdout.flush()
                 time.sleep(0)
 print()
-slow_scroll("CHAPTER I - INCESSANT FAMILIARITY")
+def slow_scroll(str):
+        for letter in str:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.1)
+slow_scroll("CHAPTER I - ANTECEDENT")
+def slow_scroll(str):
+        for letter in str:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(slow_scroll_speed)
+print()
+def slow_scroll(str):
+        for letter in str:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.1)
+slow_scroll("CHAPTER II - INCESSANT FAMILIARITY")
 def slow_scroll(str):
         for letter in str:
             sys.stdout.write(letter)
@@ -99,7 +124,7 @@ def slow_scroll(str):
 while die_end_time == 0:
  print()
  print()
- slow_scroll("you open your eyes... a familiar reteched scent lingering around you. You get up as the aroma leaves you again... a long dimly lit corridor stands before you. behind you an exit. do you leave?")
+ slow_scroll("the memories end as you open your eyes... a familiar retched scent lingering around you. You get up as the aroma leaves you again... a long dimly lit corridor stands before you. behind you an exit. do you leave?")
  print()
  print()
  die_input = input("(Y/N): ").upper()
@@ -111,9 +136,9 @@ while die_end_time == 0:
  if die_input == "N":
     print()
     die_end_time = die_end_time + 1
-slow_scroll("as you traverse the dungeons of Fear & Hunger you come across two corpses. the corpse on the left seems decapitated with it's head still rolling before coming to a stop. the corpse on the right has a fresh laceration, her blood staining the ground you stand on. the corpses chest is still rising and falling...")
+slow_scroll("as you traverse the dungeons of Fear & Hunger you come across two corpses. the corpse on the left seems decapitated with its head still rolling before coming to a stop. the corpse on the right has a fresh laceration, her blood staining the ground you stand on. the chest of the corpse is still rising and falling...")
 print()
-slow_scroll("as you take a step towards the barely alive woman, the once rolling head now squirms to the decapited corpse on the left. It slithers inside as the corpse, now reanimated, stands up. it locks eyes with you through its matted hair")
+slow_scroll("as you take a step towards the barely alive woman, the once rolling head now squirms to the decapitated corpse on the left. It slithers inside as the corpse, now reanimated, stands up. he locks eyes with you through its matted hair")
 print()
 health_potion = health_potion + 1
 print()
@@ -121,25 +146,25 @@ slow_scroll("you can choose an up to 3 skills...")
 print()
 print()
 print("---------------------------------------")
-slow_scroll("black flash: black flash is an occurance. when punching an enemy and expelling energy at the same time critical damage is dealt. the window to exert this energy is small and difficult to hit, although as you keep using it the window expands... also, if mastered in tanjent with malevolent shrine. an extra skill is learnt. costs some focus.")
+slow_scroll("black flash: black flash is an occurance. when punching an enemy and expelling energy at the same time critical damage is dealt. the window to exert this energy is small and difficult to hit, although as you keep using it the window expands... also if mastered in tangent with malevolent shrine. extra skill is learned. costs some focus.")
 print()
 print()
 print()
 print("-------------------------------------")
-slow_scroll("infinity: the ability to make a barrier around you. this barriar is infinte, so anything that tires to bypass it will slow down until at a complete stop. Stops otherwise unblockable attacks... although it is short lasting... costs large focus")
+slow_scroll("infinity: the ability to make a barrier around you. this barrier is infinite, so anything that tries to bypass it will slow down until at a complete stop. Stops otherwise unblockable attacks... although it is short lasting... costs large focus")
 print()
 print()
 print()
 print("-------------------------------------")
-slow_scroll("domain expansion, malevolant shrine: a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevnet shrine that sure-hit is a series of continous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learnt... costs all focus")
+slow_scroll("domain expansion, malevolent shrine: a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevnet shrine that sure-hit is a series of continuous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learned... costs all focus")
 print()
 print()
 print()
 print("-------------------------------------")
-slow_scroll("reverse cursed heaing: a technique where energy is used to reverse the state of your body. acting as a healing agent. although diffuct at first, profiency is quicly learnt and thus the effects of healing last for longer. costs a relative amount of focus...")
+slow_scroll("reverse cursed healing: a technique where energy is used to reverse the state of your body. acting as a healing agent. although difficult at first, proficiency is quickly learned and thus the effects of healing last for longer. costs a relative amount of focus...")
 print()
 print()
-slow_scroll("do you want skill *black flash*?")
+slow_scroll("do you want skill *black flash*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
 if skill_input_choice == "Y":
@@ -155,18 +180,18 @@ skill_input_choice = input("").upper()
 if skill_input_choice == "Y":
     print()
     infinity = True
-    slow_scroll("infinity equiped")
+    slow_scroll("infinity equipped")
     print()
     turns_skill_amount = turns_skill_amount + 1
     print()
 print()
-slow_scroll("do you want skill *domain expansion: malevolant shrine*? (Y/N)")
+slow_scroll("do you want skill *domain expansion: malevolent shrine*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
 if skill_input_choice == "Y":
     print()
-    malevolant = True
-    slow_scroll("malevolant shrine equipped")
+    malevolent = True
+    slow_scroll("malevolent shrine equipped")
     print()
     turns_skill_amount = turns_skill_amount + 1
     print()
@@ -180,7 +205,7 @@ if skill_input_choice == "Y" and turns_skill_amount != 3:
     print()
     print()
 if skill_input_choice == "Y" and turns_skill_amount == 3:
-    slow_scroll("max skills equipped.")
+    slow_scroll(">max skills equipped<")
     print()
     print()
 while enemy_health > 1 and player_health > 1:
@@ -298,13 +323,13 @@ while enemy_health > 1 and player_health > 1:
       if black_flash == True:
           slow_scroll("[black flash] - 2 *1*")
           print()
-      if malevolant == True and shrine == False:
-          slow_scroll("[malevolant shrine] - 3 *3*")
+      if malevolent == True and shrine == False:
+          slow_scroll("[malevolent shrine] - 3 *3*")
           print()
       if black_flash_profiency == 1 and shrine == True:
           slow_scroll("[world cutting cleave] - 3.5 *reset*")
           print()
-      if black_flash == False and infinity == False and malevolant == False and reverse_healing == False:
+      if black_flash == False and infinity == False and malevolent == False and reverse_healing == False:
           slow_scroll("no skills equiped.(press enter) *0*")
       if reverse_healing == True and healing_basic == False and healing_advanced == False:
           slow_scroll("[reverse cursed healing] - 4 *1*")
@@ -315,7 +340,7 @@ while enemy_health > 1 and player_health > 1:
       print()
       print()
       if skill_timer == 1:
-          slow_scroll("enter corresponding number. for example infinty would be 1 and black flash would be 2. and the number within the ** is the focus charge required to use the skill. for example, for black flash you'd enter 1. so if you've got no charge, focus.")
+          slow_scroll("enter corresponding number. for example, infinity would be 1 black flash would be 2. and the number within the ** is the focus charge required to use the skill. for example, for black flash you'd enter 2 if you had the required charge within the ** that being 1. so if you've got no charge, focus.")
           print()
           print()
       input_player_skill = input("")
@@ -324,7 +349,7 @@ while enemy_health > 1 and player_health > 1:
       if input_player_skill == "1" and infinity == True:
          if focus >= 2:
           focus = focus - 2
-          slow_scroll("you briefly close your eyes and materlize the concept of infinity as an infinitely dense mass of air around you... ")
+          slow_scroll("you briefly close your eyes and materialize the concept of infinity as an infinitely dense mass of air around you... ")
           infinity_counter = True
          elif focus < 2:
              print()
@@ -354,7 +379,7 @@ while enemy_health > 1 and player_health > 1:
         slow_scroll(f"you slowly bring your arm back, and throw it in the direction of the enemy! dealing {damage} damage")
         shrine = False
         focus = 0
-      if input_player_skill == "3" and malevolant == True:
+      if input_player_skill == "3" and malevolent == True:
          if focus >= 3:
           focus = focus - 3
           slow_scroll("you bring your hands together in a unique formation as the area around you turns pitch black. everything but the creature and the woman is gone as a shrine erupts from the darkness behind you... the scene returns to normal but the shrine remains as a wave of exhaustion floods your body...")
@@ -398,6 +423,8 @@ while enemy_health > 1 and player_health > 1:
                   if focus >= 1:
                       damage = round(damage * 1.3)
                   damage = round(damage * 3)
+                  if infinity_counter == True:
+                      damage = damage * 2
                   enemy_health = enemy_health - damage
                   print()
                   print()
@@ -410,6 +437,8 @@ while enemy_health > 1 and player_health > 1:
                   damage = random.randint(20, 25)
                   if focus >= 1:
                       damage = round(damage * 1.3)
+                  if infinity_counter == True:
+                      damage = damage * 2
                   enemy_health = enemy_health - damage
                   print()
                   print()
@@ -445,6 +474,8 @@ while enemy_health > 1 and player_health > 1:
                   damage = round(damage * 2.5)
                   if focus >= 1:
                       damage = round(damage * 1.3)
+                  if infinity_counter == True:
+                      damage = damage * 2
                   enemy_health = enemy_health - damage
                   slow_scroll(f"the enemy takes {damage} damage!")
                   print()
@@ -516,6 +547,8 @@ while enemy_health > 1 and player_health > 1:
            damage = round(damage * 2)
            if focus >= 1:
                       damage = round(damage * 1.3)
+           if infinity_counter == True:
+               damage = damage * 2
            enemy_health = enemy_health - damage
            slow_scroll(f"you plunge your sword into the creature, hitting an artery & dealing {damage} damage!")
        else:
@@ -527,6 +560,8 @@ while enemy_health > 1 and player_health > 1:
                damage = damage * 1.3
            if focus >= 1:
                       damage = round(damage * 1.3)
+           if infinity_counter == True:
+               damage = damage * 2
            enemy_health = enemy_health - damage
            slow_scroll(f"you plunge your sword into the creature. dealing {damage} damage")
        print()
@@ -616,6 +651,7 @@ while enemy_health > 1 and player_health > 1:
               coin_flip_result = True
           else:
               slow_scroll("you guessed wrong.")
+              print()
               coin_flip_result = False
           if coin_flip_result == False:
               coin_flip = random.randint(1, 2)
@@ -882,11 +918,11 @@ if player_health >= 1:
          print()
          woman_member = True
      if reverse_healing == False and health_potion <= 0:
-         slow_scroll("there's nothing you can do... you don't have anything related to healing... the cut's too deep for a cloth to even prolong her life. but it seems the woman had already accepted her death a long time ago. as she closes her eyes with a peaceful expression... she takes one last death... she's dead.")
+         slow_scroll("there's nothing you can do... you don't have anything related to healing... the cut's too deep for a cloth to even prolong her life. but it seems the woman had already accepted her death a long time ago. As she closes her eyes with a peaceful expression... she takes one last death... she's dead.")
          print()
          woman_member = False
      if reverse_healing == True and health_potion <= 0:
-          slow_scroll("you feel for your health poition but fail to find it... you could use reverse cursed healing but using it on someone is known to have drawbacks. at least you think you know, memories of the past are hazy... regardless, do you heal her?")
+          slow_scroll("you feel for your health potion but fail to find it... you could use reverse cursed healing but using it on someone is known to have drawbacks. at least you think you know, memories of the past are hazy... regardless, do you heal her?")
           print()
           heal_lady_input = input("(Y/N): ").upper()
           print()
@@ -915,7 +951,7 @@ if player_health >= 1:
               reverse_healing = False
           if heal_lady_input == "N":
               woman_member = False
-              slow_scroll("you dont heal her. instead watching her die. altough it seems she's accepted her death a long time ago... as she closes her eyes..... she's dead")
+              slow_scroll("you don't heal her. instead watching her die. although it seems she's accepted her death a long time ago... as she closes her eyes..... she's dead")
               print()
 else:
  slow_scroll("you take your last breath... you've died")
@@ -928,7 +964,7 @@ def slow_scroll(str):
             sys.stdout.write(letter)
             sys.stdout.flush()
             time.sleep(0.1)
-slow_scroll("CHAPTER II - EYE OF A HURRICANE")
+slow_scroll("CHAPTER III - EYE OF A HURRICANE")
 def slow_scroll(str):
         for letter in str:
             sys.stdout.write(letter)
@@ -937,8 +973,75 @@ def slow_scroll(str):
 print()
 if woman_member == False:
     print()
-    slow_scroll("you stand in silence...")
+    if rher == True:
+     slow_scroll("you stand in silence... you feel like you're missing 200+ lines of code... the womans corpse still and unmoving...")
+     if rher == False:
+      slow_scroll("you stand in silence... the womans corpse still and unmoving...")
     print()
+    slow_scroll("you take a breath to regain your composure... what do you do?")
+    print()
+    print()
+    lady_talk_input_1 = ()
+    while lady_talk_input_1 != "3":
+     print()
+     slow_scroll("check the corpse of the enemy - 1")
+     print()
+     slow_scroll("check the corpse of the lady - 2")
+     print()
+     slow_scroll("go in deeper - 3")
+     print()
+     slow_scroll("leave the dungeon - 4")
+     print()
+     lady_talk_input_1 = input(":")
+     print()
+     if lady_talk_input_1 == "1":
+        print()
+        print()
+        slow_scroll("beat the corpse - 1")
+        print()
+        slow_scroll("examine the corpse - 2")
+        print()
+        slow_scroll("loot the corpse - 3")
+        print()
+        lady_talk_input_2 = input(":")
+        print()
+        print()
+        if lady_talk_input_2 == "1":
+           slow_scroll("you beat the corpse... it's body is no different than a human... kinda squishy")
+           print()
+        if lady_talk_input_2 == "2":
+           slow_scroll("you examine the corpse... the body itself seems unchanged, besides the lack of head with just an empty spot near the neck. speaking of, it seems there are almost root like holes going deep into the body... looking at the 'head' it also has about a dozen antena-looking spikes coming from the base of its neck. lifting it holding it near the base of the corpse it looks like the stems would fit into the holes It's best not to try it.\nwhile holding the head you notice it feels the same as a normal head would, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the person's face and body ring no bells either.")
+           print()
+        if lady_talk_input_2 == "3":
+           slow_scroll("you crouch near the corpse... patting it's pockets and prodding through the clothes... altough nothing is found")
+     if lady_talk_input_1 == "2":
+        slow_scroll("you look down at the corpse of the lady...")
+        print()
+        print()
+        slow_scroll("beat the lady - 1")
+        print()
+        slow_scroll("examine the lady - 2")
+        print()
+        slow_scroll("loot the lady - 3")
+        print()
+        lady_talk_input_2 = input(":")
+        print()
+        print()
+        if lady_talk_input_2 == "1":
+           slow_scroll("you beat the lady... your foot slamming into her armor... not doing much... her still body rocks with your attacks")
+           print()
+        if lady_talk_input_2 == "2":
+           slow_scroll("You examine the lady... crouching down as your eyes scan her body. her blood-tinged dark long hair sprawled over the floor... her armor and weapons seem a little fancy, nothing noble, nothing peasant, nothing like you... her empty eyes rest on the ceiling and her armor spotted with blood")
+           print()
+        if lady_talk_input_2 == "3":
+           slow_scroll("you crouch near the lady... you poke and prod looking for anything useful... although nothing is found")
+           print()
+     if lady_talk_input_1 == "3":
+        slow_scroll("you stretch a little and walk deeper into the dungeon...")
+        print()
+     if lady_talk_input_1 == "4":
+        slow_scroll("you turn around... the stench of blood replaced by the familiar untouchable smell... followed by your body feeling tired... then your eye lids feel heavy... then your legs as you fall... you close your eyes...")
+        sys.exit()
 elif woman_member == True:
     print()
     slow_scroll("the lady sits up slowly. she opens her mouth to say something before beginning to violently cough. turning to her side to rid her lungs of blood...")
@@ -962,9 +1065,9 @@ elif woman_member == True:
     lady_talk_input_1 = input(":")
     print()
     if lady_talk_input_1 == "1":
-       slow_scroll("after another few coughs she wipes the blood off her lips and turns to you with a weak smile\n[haha, sorry about that]\nshe turns to her side to sit, catching her breath")
+       slow_scroll("After another few coughs she wipes the blood off her lips and turns to you with a weak smile\n[haha, sorry about that]\nshe turns to her side to sit, catching her breath")
     if lady_talk_input_1 == "2":
-        slow_scroll("she continous to cough, but holds a hand up, gesturing that she's okay... eventally the coughs subside as she relaxes. sitting down with a relived smile\n[holy shit... that thing i... thought i was...]\nshe looks up at the ceiling, breathing deeply, appreciating the new found life.")
+        slow_scroll("she continues to cough, but holds a hand up, gesturing that she's okay... eventually the coughs subside as she relaxes. sitting down with a relived smile\n[holy shit... that thing i... thought I was...]\nshe looks up at the ceiling, breathing deeply, appreciating the newfound life.")
     if lady_talk_input_1 == "3":
         slow_scroll("she looks at you with slight annoyance, before putting her hand up from her throat to her mouth to try and cough less... after a few seconds the coughs subisde as she lets her blood ridden palm down\n[wo-] she tries to speak but coughs another time\n[ugh... it hurts to talk]")
     if lady_talk_input_1 == "4":
@@ -973,7 +1076,32 @@ elif woman_member == True:
        slow_scroll("she smiles for a moment, shaking her head to say no before violently coughing again... although after a moment she sits up and wipes the blood off her lips with one last shallow cough\n[thanks for... trying to help] she says, trying to catch her breath.")
     lady_talk_input_1 = ()
     print()
-    slow_scroll("as she catches her breath what do you do?")
+    slow_scroll("she catches her breath... pushing her sprawled dark long hair to the side...")
+    print()
+    slow_scroll("between shallow breaths she asks\n[so... what's your name?]")
+    print()
+    if rher == True:
+        slow_scroll("[sorry that's silly]\nyou feel your left eye sting more than ever, so much so your hand flinches to cover it as you lean forward in momentary pain... you look up as she continues, your left field of vision pure static")
+        print()
+        print("*")
+        slow_scroll(f"[your name is {platform.node()} right?]")
+        print()
+        right = input("(Y/N): ").upper()
+        print()
+        if right == "Y":
+            name = platform.node()
+            slow_scroll(f"...her face drops slightly as she touches her face is with a slightly shaking hand, she's starting to sweat and her face is growing pale\n[what... just...] she says, her eyes beginning  to grow wider\nafter a moment she takes a deep breath and smiles slightly\n[um... so... your name is {name} huh? I... I like it] she says, looking at you but her mind elsewhere\n...your left field slowly returns to normal... a faint static still there but negligible.")
+        elif right == "N":
+            slow_scroll("[oh haha] she says, reaching a shaky hand to her face as if confirming she's still there... her face riddled with sweat beads\n[sorry i don't know... why... um what is your name then] she says, visibly shaken")
+            print()
+            name = input(":")
+            slow_scroll(f"she wipes the sweat off her hand with a subtle pinkness\n[that's a nice name {name}]")
+            print()
+    elif rher == False:
+     name = input(":")
+     slow_scroll(f"[that's a nice name {name}]")
+     print()
+    print()
     print()
     print()
     slow_scroll("make your way to the exit - 1")
@@ -990,42 +1118,84 @@ elif woman_member == True:
     lady_talk_input_1 = input(":")
     print()
     if lady_talk_input_1 == "1":
-       slow_scroll("you turn around and begin to make your way to the exit... as the distant familiar scent picks up you hear a voice from behind\n[hey! w- where are you going?]\nthe lady gets up and jogs up to you. walking alongsode you as she continues\n[you'r in this dungeon for a reason right? we oughtta go down together... neither of us want a repeat of that whole situation... right?] she says, a tinge of desperation in her voice")
+       slow_scroll(f"you turn around and begin to make your way to the exit... as the distant familiar scent picks up you hear a voice from behind\n[hey! w- where are you going, {name}?]\nthe lady gets up and jogs up to you. walking alongside you as she continues [you're in this dungeon for a reason right? we ought to go down together... neither of us wants a repeat of that whole situation... right? {name}?] she says, a tinge of desperation in her voice")
        print()
        print()
        slow_scroll("ignore her and leave - 1")
        print()
        slow_scroll("[right, you could come with me. you'll probably die otherwise] - 2")
        print()
-       slow_scroll("[right... but i don't know why i'm here.] - 3")
+       slow_scroll("[right... but i don't know why I'm here.] - 3")
        print()
        slow_scroll("[right... but i don't wanna die] - 4")
        print()
        slow_scroll("turn around [you're right. lets go] - 5")
        print()
        print()
-       lady_talk_input_1 = input(":")
+       lady_talk_input_2 = input(":")
        print()
-       if lady_talk_input_1 == "1":
-          slow_scroll("you continue on... a defeated sigh is heard from behind you as the aroume intensifies\n[alright well... im going in but- thanks for saving me] the lady says as her steps echo down the hall...\nthe smell is beginning to make you nasous...\nyou feel tired...\you feel exhausted...\nyou fall to the floor as you close your eyes...")
+       if lady_talk_input_2 == "1":
+          slow_scroll(f"you continue on... a defeated sigh is heard from behind you as the aroma intensifies\n[alright well... im going in but- thanks for saving me, {name}] the lady says as her steps echo down the hall...\nthe smell is beginning to make you nauseous...\nyou feel tired...\nyou feel exhausted...\nyou fall to the floor as you close your eyes...")
           print()
           time.sleep(4)
           sys.exit()
-       if lady_talk_input_1 == "2":
-           slow_scroll("you sit down. resting your fatigued body on the wall behind you...\nshe shifts the way to sit so she also faces the wall, she opens her mouth\n[so... my name's Emily. and you're the dude that saved me]")
-       if lady_talk_input_1 == "3":
-           slow_scroll("you take a step closer to the corpse. crouching down as your eyes scan the body. the body itself seems unchanged, besides the lack of head with just an empty spot near the neck. speaking of, it seems there are almost root like holes going deep into the body... looking at the 'head' it also has about a dozen antena looking spikes coming from the base of its neck. lifting it holding it near the base of the corpse it looks like the stems would fit into the holes... best not to try it.\nwhile holding the head you notice if feels the same as a normal head would, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the persons face body rings no bells either.\n[what'cha doin?] the lady asks from behind")
-       if lady_talk_input_1 == "4":
-          slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that] she smiles\n[as a thanks how about i tag along? i'll pull more than my weight]")
-       if lady_talk_input_1 == "5":
-          slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes?]")
+       if lady_talk_input_2 == "2":
+           slow_scroll("[...I \I can't. I need to... I just can't]\nshe turns around, with a defeated sigh, and glances behind at you\n[whether you come or not im going in... I'd like you to come...]\nshe begins to walk in...")
+           print()
+           print()
+           slow_scroll("do you continue to leave?")
+           print()
+           print()
+           lady_talk_input_3 = input("(Y/N): ").upper()
+           print()
+           if lady_talk_input_3 == "Y":
+               slow_scroll("you continue to leave... as a familiar stench begins to seep into your senses... your eyelids growing heavy as does your body... you fall and hit your head... passing out...")
+               sys.exit()
+           if lady_talk_input_3 == "N":
+               slow_scroll("you turn around and jog up to her as she turns around. a relived smile spreading on her face. she nods with appreciation as you both walk on with determination")
+               print()
+               print()
+       if lady_talk_input_2 == "3":
+           slow_scroll("she studies your face for a moment... folding her arms over and looking straight at you\n[you must be here for a reason, {name}, getting here is a nightmare i barely even made it... but if you don't know... maybe venturing down further will... will help you figure out why] she says. unsure.")
+           print()
+           print()
+           slow_scroll("do you continue to leave?")
+           print()
+           print()
+           lady_talk_input_3 = input("(Y/N): ").upper()
+           print()
+           if lady_talk_input_3 == "Y":
+               slow_scroll("you continue to leave... as a familiar stench begins to seep into your senses... your eyelids growing heavy as does your body... you fall and hit your head... passing out...")
+               sys.exit()
+           if lady_talk_input_3 == "N":
+               print()
+               print()
+               slow_scroll("nod - 1")
+               print()
+               slow_scroll("[you're right... i want to know why I'm here] - 2")
+               print()
+               slow_scroll("[fine you've convinced me] - 3")
+               print()
+               print()
+               lady_talk_input_4 = input(":")
+               print()
+               if lady_talk_input_4 == "1":
+                   slow_scroll("her face relaxes in relief as she pats your back and begins to lead you in with her\n[perfect! ya scared me a bit there, {name}]")
+               if lady_talk_input_4 == "2":
+                   slow_scroll("she nods\n[exactly! cmon, {name}]\nshe wraps her arm around you and leads you deeper in...")
+               if lady_talk_input_4 == "3":
+                   slow_scroll("she smiles\n[I'm good with my words when I need to be]\nshe slaps your back with an excessive strength causing you to stumble. taking a foot more in the dungeon\n[cmon! in we go, {name}]\n you both set in... deeper...")
+       if lady_talk_input_2 == "4":
+          slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
+       if lady_talk_input_2 == "5":
+          slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes, {name}?]")
        print()
     if lady_talk_input_1 == "2":
-        slow_scroll("you sit down. resting your fatigued body on the wall behind you...\nshe shifts the way to sit so she also faces the wall, she opens her mouth\n[so... my name's Emily. and you're the dude that saved me]")
+        slow_scroll("you sit down. resting your fatigued body on the wall behind you...\nshe shifts the way to sit so she also faces the wall, she opens her mouth\n[so... my name's Emily. and you're the dude that saved me, {name} right? ill remember that.]")
     if lady_talk_input_1 == "3":
-        slow_scroll("you take a step closer to the corpse. crouching down as your eyes scan the body. the body itself seems unchanged, besides the lack of head with just an empty spot near the neck. speaking of, it seems there are almost root like holes going deep into the body... looking at the 'head' it also has about a dozen antena looking spikes coming from the base of its neck. lifting it holding it near the base of the corpse it looks like the stems would fit into the holes... best not to try it.\nwhile holding the head you notice if feels the same as a normal head would, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the persons face body rings no bells either.\n[what'cha doin?] the lady asks from behind")
+        slow_scroll("you take a step closer to the corpse. crouching down as your eyes scan the body. the body seems unchanged, besides the lack of a head with just an empty spot near the neck. speaking of, it seems there are almost root-like holes going deep into the body... looking at the 'head' it also has about a dozen antenna-looking spikes coming from the base of its neck. lifting it and holding it near the base of the corpse it looks like the stems would fit into the holes It's best not to try it.\nwhile holding the head you notice it feels the same as a normal head would, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the person's face and body ring no bells either.\n[what'cha doin', {name}?] the lady asks from behind")
     if lady_talk_input_1 == "4":
-       slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that] she smiles\n[as a thanks how about i tag along? i'll pull more than my weight]")
+       slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
     if lady_talk_input_1 == "5":
        slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes?]")
     print()
