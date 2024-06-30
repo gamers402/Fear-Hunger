@@ -58,9 +58,12 @@ sis_on = False
 sylvian_fear_on = False
 rher_fear_on = False
 rher_fear_on_2 = False
+convergance_counter = False
+convergance = ()
+piercing_blood = ()
 
 def random_dialogue():
-    x = random.randint(1, 12)
+    x = random.randint(1, 10)
     if x == 1:
         slow_scroll("the creatures eyes scan your body rapidly...")
     if x == 2:
@@ -81,10 +84,10 @@ def random_dialogue():
         slow_scroll("the creatures face twists to that of hunger...")
     if x == 10:
         slow_scroll("...")
-    if x == 11 and rher == True:
-        slow_scroll("your left feild of vision flashes static")
-    if x == 12 and rher == True:
-        slow_scroll("your left eye stings in pain for a moment")
+    if x == 9 and rher == True:
+        slow_scroll("your left feild of vision flashes static...")
+    if x == 1 and rher == True:
+        slow_scroll("your left eye stings in pain for a moment...")
 
 while x != "Y" and x != "N":
     x = input("would you like scroll text? (scroll is reccomended) (Y/N):").upper()
@@ -121,170 +124,192 @@ def slow_scroll(str):
             time.sleep(slow_scroll_speed)
 print()
 print()
-slow_scroll("you sit on your chair. on the porch of a run-down house with your little sister on the chair opposite to you. She looks at her cards, besides the hidden card she's got a 17, looking at your cards you've got a 21. you look out on the street. an odd mist flooding the streets, though the town remains moving. The kingdom of Rondon is always moving. a weird smell you don't recognize begins to fill your nostrils. you see a figure walking up to the porch, clearing from the mist it's clear your father has returned from work. you look down at your cards, it's your turn...")
+slow_scroll("skip exposition? (not reccomended on first playthrough)")
 print()
-slow_scroll("(draw) and lose\n(hold) and win *input choices in (parenthesis)*")
+skip = input("(Y/N): ").upper()
 print()
-draw = input("")
-print()
-if draw == "draw":
-     random_draw = random.randint(1, 11)
-     slow_scroll(f"you decide to draw, you draw a {random_draw}.")
-     print()
-     slow_scroll("as you look up with a slight smile you hear heavy footsteps pass from behind you. your little sisters gaze downturned...")
-if draw == "hold":
-     slow_scroll("you decide to hold")
-     print()
-     slow_scroll("as you look up you hear heavy footsteps pass from behind you. your little sisters gaze downturned...")
-print()
-print()
-slow_scroll("an uncomfertable silence follows the slamming of the door...")
-print()
-print()
-slow_scroll("...")
-print()
-print()
-slow_scroll("later that day... you're in your room as the door opens and your sister steps in.\n[hey...] she says in a quiet voice. as if scared someone else will hear\nshe sits next to you. holding a paper tightly in her hand. so much so it's crumpled beyond literacy\n[dad has been working really hard... and... we're not doing great with money so] she turns to you with determination\n[I want to help!]\n[the um... there's a factory being built nearby... they hire children so] she shows you the paper\n[i don't really know how to tell him... he doesn't like secrets so i can't do that but im scared if i tell him he'll...] she looks up at you\n [what do i do?]")
-print()
-print()
-slow_scroll("[that's a bad idea, drop out you're still young] - 1\n[just tell him] - 2\n[tell him about why you want to do it then ask if you can] - 3")
-print()
-while sis_on == False:
+if skip == "Y":
+    slow_scroll("pick a god.")
     print()
-    sis = input("")
+    slow_scroll("gro-goroth 1\nsylvian 2\nrher 3")
     print()
     print()
-    if sis == "1":
-        slow_scroll("she frowns and gets up\n[everyone has a job but me! it's not fair I wanna help!] She was always stubborn\n[im gunna do it... it's just some machine cleaning] she says, shifting the paper to her left hand and walking out, her momentary outburst dying down as her face drops and she glances behind her.. at you\n[if something bad happens you'll help... right?] fear lingers in her words")
-        sis_on = True
-    if sis == "2":
-        slow_scroll("she pauses before looking down at her lap. building courage\n[yeah you're right... it might be that simple] she says before getting up\n[okay! ill tell him then I'll go to work and we can be rich... easy peasy but uh... if something happens to me when I ask... you'll help, right?] fear lingers in her words")
-        sis_on = True
-    if sis == "3":
-        slow_scroll("she smiles slightly and nods\n[yeah!] she looks up at you\n[if he knows im just doing it for the family he'll... he'll understand] she says to you and herself as she leans forward to give you a quick hug...\nshe hugs tighter than normal [if something happens when i ask you'll... help, right?] fear lingers in her words")
-        sis_on = True
-print()
-print()
-slow_scroll("later... you open the door to the bathroom and begin to step in as you notice your little sister approaching your father with a piece of paper in her hand. nervously fiddling with the hem of her skirt... you go into the bathroom... your worry builds up before exploding with a loud thud from outside the bathroom... you get up and begin to open the door... fear flooding your body as the door swings open.")
-print()
-print()
-slow_scroll("it's night. darker than most nights. nigh pitch black. the inside of the living room mirrors the sky. the environment is pitch black. only a small area lit by a small candle. the warm light illuminating a dark figure. its frame towering over another smaller figure. who's on the ground. the towering figure's eye darts to yours, merging with the shadows. its expression mostly hidden in the shadow, though HATRED is plastered on its face... that hatred reminds you of your father... the warm light illuminates the side of the small figure's face, a bead of blood falling down its cheek, followed by more blood. the floor begins to seep with blood. the small figure unmoving. it's dead silent.")
-print()
-print()
-slow_scroll("you are scared")
-print()
-print()
-slow_scroll("how do you channel your fear?")
-print()
-print()
-slow_scroll("turn your fear to DESTRUCTION and attack the figure - 1")
-print()
-slow_scroll("turn your fear to LOVE and try to heal the small figure - 2")
-print()
-slow_scroll("channel your fear and run - 3")
-print()
-print()
-while fear_on == False:
- fear = input("")
+    god_input = input("")
+    print()
+    if god_input == "1":
+        gro_goroth = True
+    if god_input == "2":
+        sylvian = True
+    if god_input == "3":
+        rher = True
+if skip == "N":
+ slow_scroll("you sit on your chair. on the porch of your dads run-down house with your little sister on the chair opposite to you. She looks at her cards on the table, besides the hidden card she's got a 17. though her nervous habit of biting her lip indicates she's going to lose. looking at your cards you've got a 21. you look out on the street. an odd mist flooding the streets, though the town remains moving. The kingdom of Rondon is always moving. a weird smell you don't recognize begins to fill your nostrils. you see a figure walking up to the porch, clearing from the mist it's clear your father has returned from work. you look down at your cards, it's your turn...")
  print()
- if fear == "1":
-     slow_scroll("you grit your teeth and lunge at the figure. drawing both arms forward, the figure grabs one of your wrists but with the warm glow of the candle illuminating the right side of his face. the location of his eye is clear and you're able to gouge his eye out. he groans in pain as you feel his grip tighten around your wrist. a constant stream of pain is shot from your wrist as he throws you to the ground. looking up most of your vision is full of the dark figure as you raise your hands. the figure rests its mass on your thighs. pinning you down as you see the figure swing down. you try to block but it's simply too strong...")
-     print()
-     print()
-     slow_scroll("you get hit... again and again and again... your head hurts so bad it overpowers the pain from your body... like a thousand headaches... you look to the left. the small figure clear to be your sister with the candle's brief brightness. the candle continues to grow brighter. almost unnaturally. your left hand now resting in the pool of blood. you look up one last time in regret as the shadowed fist freezes... so does the figure... turning to the left you see the candle has frozen... the ripples of blood paused as well...")
-     print()
-     print()
-     slow_scroll("you try to move... you can... as your hands instinctually gravitate to your father's throat you freeze. an unexplainable fear fills you as you feel something behind you. you dare not to turn around as a voice begins to talk. echoing throughout the room. though you cannot understand what it's saying the meaning fills your mind")
-     print()
-     print()
-     slow_scroll("a symbol flashes, backgrounded by the black. on the symbol is a body. then it's back to normal.")
-     print()
-     print()
-     while gro_goroth_fear_on == False:
-      gro_goroth_fear = input("(Y/N): ").upper()
+ slow_scroll("(draw) and lose\n(hold) and win *input choices in (parenthesis)*")
+ print()
+ draw = input("")
+ print()
+ if draw == "draw":
+      random_draw = random.randint(1, 11)
+      slow_scroll(f"you decide to draw, you draw a {random_draw}.")
       print()
-      if gro_goroth_fear == "N":
-          slow_scroll("you think no as the fear leaves. with your fingers till around his throat, you squeeze down... beginning to choke him as he reaches at his throat. before turning his hands downward and instead choking you... slamming your head into the ground until you can't hold your grip much longer... you try to breathe but can't... you died")
-          sys.exit()
-      if gro_goroth_fear == "Y":
-          slow_scroll("you think yes as the presence leaves. a trace remaining. with your fingers in the puddle of blood the ripples return, so does the fire, so does your father. as you raise you hand from the blood a series of blades begin to materialize from the blood. a katana, broad sword, daggar, nagikaba. dozens on different blades shoot up from the puddle as you reach for your father and all the blades follow. piercing him. blood speeds from his various wounds. especially his neck wound as he clutches his throat. the pressure is to no avail as he falls to the side...")
-          print()
-          print()
-          slow_scroll("...getting up you look down. the blood stained on the ground is starting to turn into that symbol that flashed into your head. the traces of the presence intensify as you see your father simply disappear. as if he was never thought of. your dead sister on the other hand. is untouched.")
-          print()
-          gro_goroth = True
-          gro_goroth_fear_on = True
-          fear_on = True
- if fear == "2":
-    while sylvian_fear_on == False: 
-     slow_scroll("your fear turns to that of worry as you wearily walk towards the figure on the ground... looking at it more closely it's your sister... you kneel towards your sister, your knee now covered in blood. the towering figure lifts his fist before plunging it down towards you...\nhis fist stops midway... so does he... so do the ripples in the blood... so does the flame of the candle. you feel an incomprehensible fear behind you. not daring to turn back. you feel a tentacle grope your shoulder. although when you look a soft-skinned woman's hand is there. her hand slithers towards your chin as she asks. in a tongue you do not recognize. yet you understand the meaning.")
-     print()
-     print()
-     slow_scroll("[do you love me?]")
-     print()
-     love = input("(Y/N): ").upper()
-     print()
-     if love == "Y":
-         slow_scroll("[I love you too!] she says as her hand lingers for a moment before slithering away, her warm touch reminding you of your long-gone mother... though you are much more scared than you were with your mother. nevertheless, the presence leaves. though a remnant remains in you")
-     if love == "N":
-         slow_scroll("[I love you too...] she says as her hand slithers away, her warm touch reminding you of your long-gone mother... though you are much more scared than you were with your mother. nevertheless, the presence leaves. though a remnant remains in you")
-     print()
-     print()
-     slow_scroll("with a new found energy within you... time resumes. your father's hand continues to swing down. though right before his fist makes contact... you blink... and he's gone. only the darkness behind him was present. from that darkness puddle of blood creeps its way towards you... luckily it's dark, leaving you in bliss as to what caused that annihilation.")
-     print()
-     slow_scroll("you look back towards your sister... the puddle of blood made by her now made a symbol below you. with an outer circle just big enough for you and her to move around slightly without leaving the circle... you look down and put your hands on her chest as you try to force something... anything to happen. you open one eye, and some blood from the circle starts to seep into her wounds and bubble... but then they return to the circle... you try again and again and again until a wave of exhaustion floods your body and you're left helpless... this symbol means something but what? you don't know. all you can do is lie in despair.")
-     sylvian = True
-     sylvian_fear_on = True
-     fear_on = True
- if fear == "3":                        
-     slow_scroll("you listen to your body and dash out the bathroom and to the right. reaching the entrance you try the knob but it's locked. fiddling for the lock feels like hours with the lack of sight, you hear footsteps approaching from behind. though before it can get you, the door unlocks and you begin to run.\nrunning and running.")
-     print()
-     print()
-     slow_scroll("as you run the mist from before clouds your vision... you hear footsteps behind you. it's following you... and you're growing tired.")
-     print()
-     print()
-     slow_scroll("besides this, as you grow more tired, an odd tranquility is felt as you look up at the moon. for maybe one last time.")
-     print()
-     print()
-     slow_scroll("the moon looks back. a sinister face plastered on it, with a wide grin and hollow eyes. the moon begins to fall at great speeds. though throughout this only your left eye sees this delusion, your right sees the normal moon. the left eye, now searing, opens. As you look behind you, the figure, now clear to be your dad in the moonlight, grabs your shoulder and lifts his arm to attack. your left vision has a faint static in the background, your left ear ringing static too.")
-     print()
-     print()
-     while rher_fear_on == False:
-      rher_fear = input("(Y/N): ").upper()
+      slow_scroll("as you look up with a slight smile you hear heavy footsteps pass from behind you. your little sisters gaze downturned...")
+ if draw == "hold":
+      slow_scroll("you decide to hold")
       print()
-      if rher_fear == "N":
-          slow_scroll("you think no... your dad pauses... a look of horror and disgust on his face as he begins to run away... from you. though you cannot see yourself as both your eyes see a faint static that grows alongside a burning pain in your heart. you clutch at your transforming body as your mind slips into insanity.")
-          sys.exit()
-      if rher_fear == "Y":
-          slow_scroll("you think yes as the static increases. you try to shove your dad off you with you left hand. as you do your left eye stings slightly...")
-          print()
-          print()
-          while rher_fear_on_2 == False:
-           slow_scroll("at this moment what concept is the most rampant?")
+      slow_scroll("as you look up you hear heavy footsteps pass from behind you. your little sisters gaze downturned...")
+ print()
+ print()
+ slow_scroll("an uncomfertable silence follows the slamming of the door...")
+ print()
+ print()
+ slow_scroll("...")
+ print()
+ print()
+ slow_scroll("later that day... you're in your room as the door opens and your sister steps in.\n[hey...] she says in a quiet voice. as if scared someone else will hear\nshe sits next to you. holding a paper tightly in her hand. so much so it's crumpled beyond literacy\n[dad has been working really hard... and... we're not doing great with money so] she turns to you with determination\n[I want to help!]\n[the um... there's a factory being built nearby... they hire children so] she shows you the paper\n[i don't really know how to tell him... he doesn't like secrets so i can't do that but im scared if i tell him he'll...] she looks up at you\n [what do i do?]")
+ print()
+ print()
+ slow_scroll("[that's a bad idea, drop out you're still young] - 1\n[just tell him] - 2\n[tell him about why you want to do it then ask if you can] - 3")
+ print()
+ while sis_on == False:
+     print()
+     sis = input("")
+     print()
+     print()
+     if sis == "1":
+         slow_scroll("she frowns and gets up\n[everyone has a job but me! it's not fair I wanna help!] She was always stubborn\n[im gunna do it... it's just some machine cleaning] she says, shifting the paper to her left hand and walking out, her momentary outburst dying down as her face drops and she glances behind her.. at you\n[if something bad happens you'll help... right?] fear lingers in her words")
+         sis_on = True
+     if sis == "2":
+         slow_scroll("she pauses before looking down at her lap. building courage\n[yeah you're right... it might be that simple] she says before getting up\n[okay! ill tell him then I'll go to work and we can be rich... easy peasy but uh... if something happens to me when I ask... you'll help, right?] fear lingers in her words")
+         sis_on = True
+     if sis == "3":
+         slow_scroll("she smiles slightly and nods\n[yeah!] she looks up at you\n[if he knows im just doing it for the family he'll... he'll understand] she says to you and herself as she leans forward to give you a quick hug...\nshe hugs tighter than normal [if something happens when i ask you'll... help, right?] fear lingers in her words")
+         sis_on = True
+ print()
+ print()
+ slow_scroll("later... you open the door to the bathroom and begin to step in as you notice your little sister approaching your father with a piece of paper in her hand. biting her lower lip and nervosuly fiddling with the hem of her skirt... you go into the bathroom... your worry builds up before exploding with a loud thud from outside the bathroom... you get up and begin to open the door... fear flooding your body as the door swings open.")
+ print()
+ print()
+ slow_scroll("it's night. darker than most nights. nigh pitch black. the inside of the living room mirrors the sky. the environment is pitch black. only a small area lit by a small candle. the warm light illuminating a dark figure. its frame towering over another smaller figure. who's on the ground. the towering figure's eye darts to yours, merging with the shadows. its expression mostly hidden in the shadow, though HATRED is plastered on its face... that hatred reminds you of your father... the warm light illuminates the side of the small figure's face, a bead of blood falling down its cheek, followed by more blood. the floor begins to seep with blood. the small figure unmoving. it's dead silent.")
+ print()
+ print()
+ slow_scroll("you are scared")
+ print()
+ print()
+ slow_scroll("how do you channel your fear?")
+ print()
+ print()
+ slow_scroll("turn your fear to DESTRUCTION and attack the figure - 1")
+ print()
+ slow_scroll("turn your fear to LOVE and try to heal the small figure - 2")
+ print()
+ slow_scroll("channel your fear and run - 3")
+ print()
+ print()
+ while fear_on == False:
+  fear = input("")
+  print()
+  if fear == "1":
+      slow_scroll("you grit your teeth and lunge at the figure. drawing both arms forward, the figure grabs one of your wrists but with the warm glow of the candle illuminating the right side of his face. the location of his eye is clear and you're able to gouge his eye out. he groans in pain as you feel his grip tighten around your wrist. a constant stream of pain is shot from your wrist as he throws you to the ground. looking up most of your vision is full of the dark figure as you raise your hands. the figure rests its mass on your thighs. pinning you down as you see the figure swing down. you try to block but it's simply too strong...")
+      print()
+      print()
+      slow_scroll("you get hit... again and again and again... your head hurts so bad it overpowers the pain from your body... like a thousand headaches... you look to the left. the small figure clear to be your sister with the candle's brief brightness. the candle continues to grow brighter. almost unnaturally. your left hand now resting in the pool of blood. you look up one last time in regret as the shadowed fist freezes... so does the figure... turning to the left you see the candle has frozen... the ripples of blood paused as well...")
+      print()
+      print()
+      slow_scroll("you try to move... you can... as your hands instinctually gravitate to your father's throat you freeze. an unexplainable fear fills you as you feel something behind you. you dare not to turn around as a voice begins to talk. echoing throughout the room. though you cannot understand what it's saying the meaning fills your mind")
+      print()
+      print()
+      slow_scroll("a symbol flashes, backgrounded by the black. on the symbol is a body. then it's back to normal.")
+      print()
+      print()
+      while gro_goroth_fear_on == False:
+       gro_goroth_fear = input("(Y/N): ").upper()
+       print()
+       if gro_goroth_fear == "N":
+           slow_scroll("you think no as the fear leaves. with your fingers till around his throat, you squeeze down... beginning to choke him as he reaches at his throat. before turning his hands downward and instead choking you... slamming your head into the ground until you can't hold your grip much longer... you try to breathe but can't... you died")
+           sys.exit()
+       if gro_goroth_fear == "Y":
+           slow_scroll("you think yes as the presence leaves. a trace remaining. with your fingers in the puddle of blood the ripples return, so does the fire, so does your father. as you raise you hand from the blood a series of blades begin to materialize from the blood. a katana, broad sword, daggar, nagikaba. dozens on different blades shoot up from the puddle as you reach for your father and all the blades follow. piercing him. blood speeds from his various wounds. especially his neck wound as he clutches his throat. the pressure is to no avail as he falls to the side...")
            print()
            print()
-           slow_scroll("HATRED - 1\nDEATH - 2\nFEAR - 3")
+           slow_scroll("...getting up you look down. the blood stained on the ground is starting to turn into that symbol that flashed into your head. the traces of the presence intensify as you see your father simply disappear. as if he was never thought of. your dead sister on the other hand. is untouched.")
            print()
-           rher_fear = input("").upper()
+           gro_goroth = True
+           gro_goroth_fear_on = True
+           fear_on = True
+  if fear == "2":
+     while sylvian_fear_on == False: 
+      slow_scroll("your fear turns to that of worry as you wearily walk towards the figure on the ground... looking at it more closely it's your sister... you kneel towards your sister, your knee now covered in blood. the towering figure lifts his fist before plunging it down towards you...\nhis fist stops midway... so does he... so do the ripples in the blood... so does the flame of the candle. you feel an incomprehensible fear behind you. not daring to turn back. you feel a tentacle grope your shoulder. although when you look a soft-skinned woman's hand is there. her hand slithers towards your chin as she asks. in a tongue you do not recognize. yet you understand the meaning.")
+      print()
+      print()
+      slow_scroll("[do you love me?]")
+      print()
+      love = input("(Y/N): ").upper()
+      print()
+      if love == "Y":
+          slow_scroll("[I love you too!] she says as her hand lingers for a moment before slithering away, her warm touch reminding you of your long-gone mother... though you are much more scared than you were with your mother. nevertheless, the presence leaves. though a remnant remains in you")
+      if love == "N":
+          slow_scroll("[I love you too...] she says as her hand slithers away, her warm touch reminding you of your long-gone mother... though you are much more scared than you were with your mother. nevertheless, the presence leaves. though a remnant remains in you")
+      print()
+      print()
+      slow_scroll("with a new found energy within you... time resumes. your father's hand continues to swing down. though right before his fist makes contact... you blink... and he's gone. only the darkness behind him was present. from that darkness puddle of blood creeps its way towards you... luckily it's dark, leaving you in bliss as to what caused that annihilation.")
+      print()
+      slow_scroll("you look back towards your sister... the puddle of blood made by her now made a symbol below you. with an outer circle just big enough for you and her to move around slightly without leaving the circle... you look down and put your hands on her chest as you try to force something... anything to happen. you open one eye, and some blood from the circle starts to seep into her wounds and bubble... but then they return to the circle... you try again and again and again until a wave of exhaustion floods your body and you're left helpless... this symbol means something but what? you don't know. all you can do is lie in despair.")
+      sylvian = True
+      sylvian_fear_on = True
+      fear_on = True
+  if fear == "3":                        
+      slow_scroll("you listen to your body and dash out the bathroom and to the right. reaching the entrance you try the knob but it's locked. fiddling for the lock feels like hours with the lack of sight, you hear footsteps approaching from behind. though before it can get you, the door unlocks and you begin to run.\nrunning and running.")
+      print()
+      print()
+      slow_scroll("as you run the mist from before clouds your vision... you hear footsteps behind you. it's following you... and you're growing tired.")
+      print()
+      print()
+      slow_scroll("besides this, as you grow more tired, an odd tranquility is felt as you look up at the moon. for maybe one last time.")
+      print()
+      print()
+      slow_scroll("the moon looks back. a sinister face plastered on it, with a wide grin and hollow eyes. the moon begins to fall at great speeds. though throughout this only your left eye sees this delusion, your right sees the normal moon. the left eye, now searing, opens. As you look behind you, the figure, now clear to be your dad in the moonlight, grabs your shoulder and lifts his arm to attack. your left vision has a faint static in the background, your left ear ringing static too.")
+      print()
+      print()
+      while rher_fear_on == False:
+       rher_fear = input("(Y/N): ").upper()
+       print()
+       if rher_fear == "N":
+           slow_scroll("you think no... your dad pauses... a look of horror and disgust on his face as he begins to run away... from you. though you cannot see yourself as both your eyes see a faint static that grows alongside a burning pain in your heart. you clutch at your transforming body as your mind slips into insanity.")
+           sys.exit()
+       if rher_fear == "Y":
+           slow_scroll("you think yes as the static increases. you try to shove your dad off you with you left hand. as you do your left eye stings slightly...")
            print()
-           if rher_fear == "1":
-               slow_scroll("you think HATRED as your dad pauses. the static flickers as you reflixively cover it with your left hand. looking up though you see your father is beginning to scratch at his neck... though it's getting harder. escalating in intensity. scratching so hard blood is spilling and nails are getting torn off... he yells in pain as he falls to the ground. his hands, like puppets, continue to scratch until an artery is hit...")
-               print()
-           if rher_fear == "2":
-               slow_scroll("you think DEATH as your dad pauses. the static flickers as you flinch inwards to cover it. As you look up you see your father wandering. before finding a loose glass shard and with a scared look in his eyes he simply slides the sharp edge into his neck with a grunt. he looks at the moon and pulls out the shard as blood splatters on the road... he falls to the ground")
-               print()
-           if rher_fear == "3":
-               slow_scroll("you think FEAR as your dad pauses. the static flickers as you ignore it. looking up you see your father. wide-eyed. he slowly looks at the moon before falling to the ground and beginning to yell. a bloodcurdling scream, so much your ears begin to hurt. his eyes seem locked on the moon beyond his will as he begins to claw his mouth... he lays on the ground holding himself... he then begins to rip his ears out... he'll ruin his senses and bleed to death eventually. you think as you begin to walk back home.")
-               print()
-           rher_fear_on_2 = True
-          slow_scroll("You feel seen in the moonlight as you stumble your way back... the mist carries on, your dad's corpse with it... returning, now with the moonlight beaming through the window. your sister's corpse replaces the dark figure seen before... the static dies down... she's dead.")
-          print()
-          slow_scroll("you glance at the moon. its left side smiling, its right normal.")
-          print()
-          print()
-          rher = True
-          rher_fear_on = True
-          fear_on = True
+           print()
+           while rher_fear_on_2 == False:
+            slow_scroll("at this moment what concept is the most rampant?")
+            print()
+            print()
+            slow_scroll("HATRED - 1\nDEATH - 2\nFEAR - 3")
+            print()
+            rher_fear = input("").upper()
+            print()
+            if rher_fear == "1":
+                slow_scroll("you think HATRED as your dad pauses. the static flickers as you reflixively cover it with your left hand. looking up though you see your father is beginning to scratch at his neck... though it's getting harder. escalating in intensity. scratching so hard blood is spilling and nails are getting torn off... he yells in pain as he falls to the ground. his hands, like puppets, continue to scratch until an artery is hit...")
+                print()
+            if rher_fear == "2":
+                slow_scroll("you think DEATH as your dad pauses. the static flickers as you flinch inwards to cover it. As you look up you see your father wandering. before finding a loose glass shard and with a scared look in his eyes he simply slides the sharp edge into his neck with a grunt. he looks at the moon and pulls out the shard as blood splatters on the road... he falls to the ground")
+                print()
+            if rher_fear == "3":
+                slow_scroll("you think FEAR as your dad pauses. the static flickers as you ignore it. looking up you see your father. wide-eyed. he slowly looks at the moon before falling to the ground and beginning to yell. a bloodcurdling scream, so much your ears begin to hurt. his eyes seem locked on the moon beyond his will as he begins to claw his mouth... he lays on the ground holding himself... he then begins to rip his ears out... he'll ruin his senses and bleed to death eventually. you think as you begin to walk back home.")
+                print()
+            rher_fear_on_2 = True
+           slow_scroll("You feel seen in the moonlight as you stumble your way back... the mist carries on, your dad's corpse with it... returning, now with the moonlight beaming through the window. your sister's corpse replaces the dark figure seen before... the static dies down... she's dead.")
+           print()
+           slow_scroll("you glance at the moon. its left side smiling, its right normal.")
+           print()
+           print()
+           rher = True
+           rher_fear_on = True
+           fear_on = True
+ print()
+ slow_scroll("the unfamiliar mist carrying that retched sent from earlier creeps into your vision... you grow weak... eventually you close your eyes")
+ print()
 def slow_scroll(str):
         for letter in str:
             sys.stdout.write(letter)
@@ -322,65 +347,119 @@ slow_scroll("you can choose an up to 3 skills...")
 print()
 print()
 print("---------------------------------------")
-slow_scroll("black flash: black flash is an occurance. when punching an enemy and expelling energy at the same time critical damage is dealt. the window to exert this energy is small and difficult to hit, although as you keep using it the window expands... also if mastered in tangent with malevolent shrine. extra skill is learned. costs some focus.")
+slow_scroll("-OLD GOD OF THE DEPTHS-\nblack flash: black flash is an occurance. when punching an enemy and expelling energy at the same time critical damage is dealt. the window to exert this energy is small and difficult to hit, although as you keep using it the window expands... also if mastered in tangent with malevolent shrine. extra skill is learned. costs some focus.")
 print()
 print()
 print()
 print("-------------------------------------")
-slow_scroll("infinity: the ability to make a barrier around you. this barrier is infinite, so anything that tries to bypass it will slow down until at a complete stop. Stops otherwise unblockable attacks... although it is short lasting... costs large focus")
+if rher == True:
+    slow_scroll("-OLD GOD OF TRICKERY-\ninfinity: the ability to make a barrier around you. this barrier is infinite, so anything that tries to bypass it will slow down until at a complete stop. Stops otherwise unblockable attacks... although it is short lasting... costs large focus")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+slow_scroll("-OLD GOD OF THE DEPTHS-\ndomain expansion, malevolent shrine: a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevolent shrine that sure-hit is a series of continuous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learned... costs all focus")
 print()
 print()
 print()
 print("-------------------------------------")
-slow_scroll("domain expansion, malevolent shrine: a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevolent shrine that sure-hit is a series of continuous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learned... costs all focus")
-print()
-print()
-print()
-print("-------------------------------------")
-slow_scroll("reverse cursed healing: a technique where energy is used to reverse the state of your body. acting as a healing agent. although difficult at first, proficiency is quickly learned and thus the healing effects last longer. costs a relative amount of focus...")
-print()
-print()
+if gro_goroth == True:
+    slow_scroll("-OLD GOD OF DESTRUCTION-\npiercing blood: spill a minimal amount of blood and compress it in your palms. then release it at a sub-sonic speed at a single oppenent. forcing bleed. causes moderate focus")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+if gro_goroth == True:
+    slow_scroll("-OLD GOD OF DESTRUCTION-\nconvergance: spill some blood. said blood will take the shape of 3 spheres around you. when an enemy attacks the sphere will automatically explode. dealing counter damage and making sure-hit attacks easier to dodge. costs only some focus.")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+if sylvian == True:
+ slow_scroll("-OLD GOD OF LOVE-\nreverse cursed healing: a technique where energy is used to reverse the state of your body. acting as a healing agent. although difficult at first, proficiency is quickly learned and thus the healing effects last longer. costs a relative amount of focus...")
+ print()
+ print()
 slow_scroll("do you want skill *black flash*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
-if skill_input_choice == "Y":
+if skill_input_choice == "Y" and turns_skill_amount != 3:
     black_flash = True
     print()
     slow_scroll("black flash equipped")
     turns_skill_amount = turns_skill_amount + 1
     print()
     print()
-slow_scroll("do you want skill *infinity*? (Y/N)")
-print()
-skill_input_choice = input("").upper()
-if skill_input_choice == "Y":
+if rher == True:
+ slow_scroll("do you want skill *infinity*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+     print()
+     infinity = True
+     slow_scroll("infinity equipped")
+     print()
+     turns_skill_amount = turns_skill_amount + 1
+     print()
+ print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
     print()
-    infinity = True
-    slow_scroll("infinity equipped")
     print()
-    turns_skill_amount = turns_skill_amount + 1
-    print()
-print()
 slow_scroll("do you want skill *domain expansion: malevolent shrine*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
-if skill_input_choice == "Y":
+if skill_input_choice == "Y" and turns_skill_amount != 3:
     print()
     malevolent = True
     slow_scroll("malevolent shrine equipped")
     print()
     turns_skill_amount = turns_skill_amount + 1
     print()
-slow_scroll("do you want skill *reverse cursed healing*?")
-print()
-skill_input_choice = input("").upper()
-if skill_input_choice == "Y" and turns_skill_amount != 3:
+if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+if gro_goroth == True:
+ slow_scroll("do you want skill *piercing blood*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+     piercing_blood = True
+     print()
+     slow_scroll("piercing blood equipped")
+     turns_skill_amount = turns_skill_amount + 1
+     print()
+     print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+if gro_goroth == True:
+ slow_scroll("do you want skill *convergance*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+     convergance = True
+     print()
+     slow_scroll("convergance equipped")
+     turns_skill_amount = turns_skill_amount + 1
+     print()
+     print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+if sylvian == True:
+ slow_scroll("do you want skill *reverse cursed healing*?")
+ print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
     print()
     reverse_healing = True
     slow_scroll("reverse cursed healing equiped")
     print()
     print()
-if skill_input_choice == "Y" and turns_skill_amount == 3:
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
     slow_scroll(">max skills equipped<")
     print()
     print()
@@ -503,15 +582,21 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("[malevolent shrine] - 3 *3*")
           print()
       if black_flash_profiency == 1 and shrine == True:
-          slow_scroll("[world cutting cleave] - 3.5 *reset*")
+          slow_scroll("[world cutting slash] - 3.5 *reset*")
           print()
-      if black_flash == False and infinity == False and malevolent == False and reverse_healing == False:
+      if black_flash == False and infinity == False and malevolent == False and reverse_healing == False and piercing_blood == False:
           slow_scroll("no skills equiped.(press enter) *0*")
       if reverse_healing == True and healing_basic == False and healing_advanced == False:
           slow_scroll("[reverse cursed healing] - 4 *1*")
           print()
       if reverse_healing_mastered == True and healing_advanced == False:
           slow_scroll("[reverse cursed healing squared] - 4.5 *2*")
+          print()
+      if piercing_blood == True:
+          slow_scroll("[piercing blood] - 5 *2*")
+          print()
+      if convergance == True:
+          slow_scroll("[convergance] - 6 *1*")
           print()
       print()
       print()
@@ -527,6 +612,35 @@ while enemy_health > 1 and player_health > 1:
           focus = focus - 2
           slow_scroll("you briefly close your eyes and materialize the concept of infinity as an infinitely dense mass of air around you... ")
           infinity_counter = True
+         elif focus < 2:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "6" and convergance == True:
+         if focus >= 1:
+          focus = focus - 1
+          player_damage = random.randint(15, 30)
+          slow_scroll(f"a constant stream of pain emerges from your back as blood seeps from behind your armor. coming in front of you. the loose beads of blood quickly collect into 3 evenly spaced spheres. the spheres linger around... you take {player_damage} damage")
+          print()
+          player_health = player_health - player_damage
+          convergance_counter = True
+         elif focus < 1:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "5" and piercing_blood == True:
+         if focus >= 2:
+          focus = focus - 2
+          damage_player = random.randint(5, 15)
+          damage = random.randint(50, 75)
+          if skill_timer == 1:
+           slow_scroll(f"you force blood out the palms of you hands. you take {damage_player} damage. the blood remains in the air for a moment before you place both hands around the blood and compress with all your might. then opening a small hole from which the enemy stands. the piercing blood shoots out! dealing {damage} damage!")
+          else:
+           slow_scroll(f"the piercing blood shoots out! dealing {damage} damage to the enemy and {damage_player} to you")
+          bleeding_enemy = True
+          enemy_health = enemy_health - damage
+          player_health = player_health - damage_player
+          print()
          elif focus < 2:
              print()
              slow_scroll("you aren't focused enough...")
@@ -552,7 +666,7 @@ while enemy_health > 1 and player_health > 1:
       if input_player_skill == "3.5" and black_flash_profiency == 1 and shrine == True:
         print()
         damage = random.randint(400, 600)
-        slow_scroll(f"you slowly bring your arm back, and throw it in the direction of the enemy! dealing {damage} damage")
+        slow_scroll(f"you slowly bring your arm back, and throw it in the direction of the enemy! the space between the enemy splits in two, dealing {damage} damage")
         shrine = False
         focus = 0
       if input_player_skill == "3" and malevolent == True:
@@ -668,7 +782,6 @@ while enemy_health > 1 and player_health > 1:
              print()
              slow_scroll("you've got no focus points...")
              print()
- 
   if input_player == "focus":
       if focus == 0:
        slow_scroll("you take a deep breath...")
@@ -714,7 +827,7 @@ while enemy_health > 1 and player_health > 1:
                slow_scroll("you unsheath your blade...")
                print()
            bleeding_enemy = True
-           damage = random.randint(25, 35)
+           damage = random.randint(35, 45)
            if black_flash_profiency == 1:
                print()
                slow_scroll("your slash leaves remnants of black sparks...")
@@ -728,7 +841,7 @@ while enemy_health > 1 and player_health > 1:
            enemy_health = enemy_health - damage
            slow_scroll(f"you plunge your sword into the creature, hitting an artery & dealing {damage} damage!")
        else:
-           damage = random.randint(25, 35)
+           damage = random.randint(35, 45)
            if black_flash_profiency == 1:
                print()
                slow_scroll("your slash leaves remnants of black sparks...")
@@ -776,7 +889,7 @@ while enemy_health > 1 and player_health > 1:
           print()
           slow_scroll("some of the slashes are triggering small black flashes.")
           print()
-      if black_flash_profiency == 1:
+      if black_flash_profiency <= 1:
           damage = round(damage * 1.5)
           print()
           slow_scroll("among the series of slashes, dark sparks fly everywhere...")
@@ -891,7 +1004,7 @@ while enemy_health > 1 and player_health > 1:
       input_enemy = 5
   if bleeding_enemy == True:
       print()
-      bleeding_enemy_damage = random.randint(10,15)
+      bleeding_enemy_damage = random.randint(15,20)
       enemy_health = enemy_health - bleeding_enemy_damage
       slow_scroll(f"blood trickles from it's open wound... dealing {bleeding_enemy_damage} damage")
   if input_enemy == 4:
@@ -904,16 +1017,33 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("the creature lunges at you... before slowing down and coming to a complet stop right in front of you...")
           infinity_counter = False
      else:
-      if enemy_hit_chance == 1:
+      if convergance_counter == True:
+          print()
+          slow_scroll("the creature lunges at you... as you flinch, your three spheres explode like shrapnel. hitting the enemy for...")
+          print()
+          convergance_1 = random.randint(10, 20)
+          convergance_2 = random.randint(10, 20)
+          convergance_3 = random.randint(10, 20)
+          enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
+          slow_scroll(f"{convergance_1}")
+          print()
+          slow_scroll(f"{convergance_2}")
+          print()
+          slow_scroll(f"{convergance_3}")
+          print()
+          slow_scroll("damage!")
+          convergance_counter = False
+      else:
+       if enemy_hit_chance == 1:
           print()
           slow_scroll("the creature lunges at you... you dodge")
           print()
-      else:
-       damage_enemy_1 = random.randint(20, 35)
-       damage_enemy_2 = random.randint(20, 35)
-       crit_chance_enemy = random.randint(1, 15)
-       print()
-       if crit_chance_enemy == 1:
+       else:
+        damage_enemy_1 = random.randint(20, 35)
+        damage_enemy_2 = random.randint(20, 35)
+        crit_chance_enemy = random.randint(1, 15)
+        print()
+        if crit_chance_enemy == 1:
            bleeding_player = True
            damage_enemy_1 = round((damage_enemy_1) * 2)
            damage_enemy_2 = round((damage_enemy_2) * 2)
@@ -927,7 +1057,7 @@ while enemy_health > 1 and player_health > 1:
                bleeding_player = False
            player_health = player_health - (damage_enemy_1 + damage_enemy_2)
            slow_scroll(f"the creature slashes wildy at you. Its chiped nails dig into your neck, hitting an artery. dealing {damage_enemy_1} & {damage_enemy_2} damage.")
-       else:
+        else:
            if defense == True:
                damage_enemy_1 = round(damage_enemy_1 / 2)
                damage_enemy_2 = round(damage_enemy_2 / 2)
@@ -936,8 +1066,8 @@ while enemy_health > 1 and player_health > 1:
                damage_enemy_2 = round(damage_enemy_2 / 1.3)
            player_health = player_health - (damage_enemy_1 + damage_enemy_2)
            slow_scroll(f"the creature slashes wildy at you. dealing {damage_enemy_1} & {damage_enemy_2} damage")
-       print()
-       print()
+        print()
+        print()
   if input_enemy == 5 and enemy_charge == True:
       turn_it_off = True
       slow_scroll("the thing quickly lunges at you!")
@@ -946,7 +1076,128 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("right as its nails are about to dig into your eyes, it slows down to a complete stop... it tries to pull away but can't")
           print()
       else:
-       if defense == True:
+       if convergance_counter == True:
+           print()
+           slow_scroll("you flinch as the spheres explode. slowing down the enemy... and dealing")
+           convergance_1 = random.randint(10, 20)
+           convergance_2 = random.randint(10, 20)
+           convergance_3 = random.randint(10, 20)
+           print()
+           enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
+           slow_scroll(f"{convergance_1}")
+           print()
+           slow_scroll(f"{convergance_2}")
+           print()
+           slow_scroll(f"{convergance_3}")
+           print()
+           slow_scroll("damage!")
+           print()
+           coin_flip = random.randint(1, 2)
+           convergance_counter = False
+           coin_flip_input = input("heads or tails?: ")
+           print()
+           print()
+           if coin_flip_input == "heads":
+               def slow_scroll(str):
+                       for letter in str:
+                           sys.stdout.write(letter)
+                           sys.stdout.flush()
+                           time.sleep(0.1)
+               slow_scroll("flipping...")
+           if coin_flip_input == "tails":
+               def slow_scroll(str):
+                       for letter in str:
+                           sys.stdout.write(letter)
+                           sys.stdout.flush()
+                           time.sleep(0.1)
+               slow_scroll("flipping...")
+           print()
+           slow_scroll("coin landed on...")
+           print()
+           print()
+           def slow_scroll(str):
+                   for letter in str:
+                       sys.stdout.write(letter)
+                       sys.stdout.flush()
+                       time.sleep(slow_scroll_speed)
+           if coin_flip == 1:
+               slow_scroll("heads!")
+               print()
+           elif coin_flip == 2:
+               slow_scroll("tails!")
+               print()
+           print()
+           if coin_flip == 1 and coin_flip_input == "heads":
+               slow_scroll("you guessed correct.")
+               coin_flip_result = True
+           elif coin_flip == 2 and coin_flip_input == "tails":
+               slow_scroll("you guessed correct.")
+               coin_flip_result = True
+           else:
+               slow_scroll("you guessed wrong.")
+               print()
+               coin_flip_result = False
+           if coin_flip_result == False:
+               coin_flip = random.randint(1, 2)
+               coin_flip_input = input("heads or tails?: ")
+               print()
+               print()
+               if coin_flip_input == "heads":
+                   def slow_scroll(str):
+                           for letter in str:
+                               sys.stdout.write(letter)
+                               sys.stdout.flush()
+                               time.sleep(0.1)
+                   slow_scroll("flipping...")
+               if coin_flip_input == "tails":
+                   def slow_scroll(str):
+                           for letter in str:
+                               sys.stdout.write(letter)
+                               sys.stdout.flush()
+                               time.sleep(0.1)
+                   slow_scroll("flipping...")
+               print()
+               slow_scroll("coin landed on...")
+               print()
+               print()
+               def slow_scroll(str):
+                       for letter in str:
+                           sys.stdout.write(letter)
+                           sys.stdout.flush()
+                           time.sleep(slow_scroll_speed)
+               if coin_flip == 1:
+                   slow_scroll("heads!")
+               elif coin_flip == 2:
+                   slow_scroll("tails!")
+               print()
+               if coin_flip == 1 and coin_flip_input == "heads":
+                   slow_scroll("you guessed correct.")
+                   print
+                   coin_flip_result = True
+               elif coin_flip == 2 and coin_flip_input == "tails":
+                   slow_scroll("you guessed correct.")
+                   print()
+                   coin_flip_result = True
+               else:
+                   slow_scroll("you guessed wrong.")
+                   coin_flip_result_2 = False
+                   print()
+           print()
+           if coin_flip_result == False and coin_flip_result_2 == False:
+            slow_scroll("its nails dig into your throat and rips out your esophagus...")
+            print()
+            slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
+            print()
+            slow_scroll("you've died...")
+            print()
+            time.sleep(5)
+            sys.exit()
+            print()
+           elif coin_flip_result == True or coin_flip_result_2 == True:
+             slow_scroll("you barely dodge the attack.")
+             print()
+       else:
+        if defense == True:
          coin_flip = random.randint(1, 2)
          coin_flip_input = input("heads or tails?: ")
          print()
@@ -1001,7 +1252,7 @@ while enemy_health > 1 and player_health > 1:
          elif coin_flip_result == True:
            slow_scroll("your buckler just barely blocks the attack...")
            print()
-       else:
+        else:
            slow_scroll("its nails dig into your throat and rips out your esophagus...")
            print()
            slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
@@ -1065,6 +1316,7 @@ while enemy_health > 1 and player_health > 1:
       if coin_flip_result == False:
        slow_scroll("the creature falls... but it's head doesnt. instead leaping from one corpse to another, ripping off the womans head with small claws and climbing in...")
        enemy_health = 150 
+       lady_death = True
        print()
       elif coin_flip_result == True:
        slow_scroll("the creature falls...")
@@ -1332,7 +1584,7 @@ elif woman_member == True:
                print()
                print()
        if lady_talk_input_2 == "3":
-           slow_scroll("she studies your face for a moment... folding her arms over and looking straight at you\n[you must be here for a reason, {name}, getting here is a nightmare i barely even made it... but if you don't know... maybe venturing down further will... will help you figure out why] she says. unsure.")
+           slow_scroll(f"she studies your face for a moment... folding her arms over and looking straight at you\n[you must be here for a reason, {name}, getting here is a nightmare i barely even made it... but if you don't know... maybe venturing down further will... will help you figure out why] she says. unsure.")
            print()
            print()
            slow_scroll("do you continue to leave?")
@@ -1356,22 +1608,22 @@ elif woman_member == True:
                lady_talk_input_4 = input(":")
                print()
                if lady_talk_input_4 == "1":
-                   slow_scroll("her face relaxes in relief as she pats your back and begins to lead you in with her\n[perfect! ya scared me a bit there, {name}]")
+                   slow_scroll(f"her face relaxes in relief as she pats your back and begins to lead you in with her\n[perfect! ya scared me a bit there, {name}]")
                if lady_talk_input_4 == "2":
-                   slow_scroll("she nods\n[exactly! cmon, {name}]\nshe wraps her arm around you and leads you deeper in...")
+                   slow_scroll(f"she nods\n[exactly! cmon, {name}]\nshe wraps her arm around you and leads you deeper in...")
                if lady_talk_input_4 == "3":
-                   slow_scroll("she smiles\n[I'm good with my words when I need to be]\nshe slaps your back with an excessive strength causing you to stumble. taking a foot more in the dungeon\n[cmon! in we go, {name}]\n you both set in... deeper...")
+                   slow_scroll(f"she smiles\n[I'm good with my words when I need to be]\nshe slaps your back with an excessive strength causing you to stumble. taking a foot more in the dungeon\n[cmon! in we go, {name}]\n you both set in... deeper...")
        if lady_talk_input_2 == "4":
-          slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
+          slow_scroll(f"you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
        if lady_talk_input_2 == "5":
-          slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes, {name}?]")
+          slow_scroll(f"[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes, {name}?]")
        print()
     if lady_talk_input_1 == "2":
-        slow_scroll("you sit down. resting your weary body on the wall behind you...\nshe shifts the way to sit so she also faces the wall, she opens her mouth\n[so... my name's Emily. and you're the dude that saved me, {name} right? ill remember that.]")
+        slow_scroll(f"you sit down. resting your weary body on the wall behind you...\nshe shifts the way to sit so she also faces the wall, she opens her mouth\n[so... my name's Emily. and you're the dude that saved me, {name} right? ill remember that.]")
     if lady_talk_input_1 == "3":
-        slow_scroll("you take a step closer to the corpse. crouching down as your eyes scan the body. the body seems unchanged, besides the lack of a head with just an empty spot near the neck. speaking of, it seems there are almost root-like holes going deep into the body... looking at the 'head' it also has about a dozen antenna-looking spikes coming from the base of its neck. lifting it and holding it near the base of the corpse it looks like the stems would fit into the holes It's best not to try it.\nwhile holding the head you notice it feels the same as a normal head, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the person's face and body ring no bells either.\n[what'cha doin', {name}?] the lady asks from behind")
+        slow_scroll(f"you take a step closer to the corpse. crouching down as your eyes scan the body. the body seems unchanged, besides the lack of a head with just an empty spot near the neck. speaking of, it seems there are almost root-like holes going deep into the body... looking at the 'head' it also has about a dozen antenna-looking spikes coming from the base of its neck. lifting it and holding it near the base of the corpse it looks like the stems would fit into the holes It's best not to try it.\nwhile holding the head you notice it feels the same as a normal head, but heavier.\nplacing the head down and examining the corpse you check the pockets... nothing. the person's face and body ring no bells either.\n[what'cha doin', {name}?] the lady asks from behind")
     if lady_talk_input_1 == "4":
-       slow_scroll("you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
+       slow_scroll(f"you remain standing... the lady looks up at you and says\n[you oughtta rest... you busted your ass after all. speaking of, thanks for that, {name}] she smiles\n[as a thanks how about i tag along? I'll pull more than my weight]")
     if lady_talk_input_1 == "5":
        slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes?]")
     print()
