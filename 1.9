@@ -61,6 +61,14 @@ rher_fear_on_2 = False
 convergance_counter = False
 convergance = ()
 piercing_blood = ()
+bloodcurdle = False
+crit_on = False
+enemy_freeze = 0
+static_bar_timer = 0
+static_bar = False
+extract = False
+enemy_freeze_rher = False
+extract_first = False
 
 def random_dialogue():
     x = random.randint(1, 10)
@@ -310,19 +318,19 @@ if skip == "N":
  print()
  slow_scroll("the unfamiliar mist carrying that retched sent from earlier creeps into your vision... you grow weak... eventually you close your eyes")
  print()
-def slow_scroll(str):
-        for letter in str:
-            sys.stdout.write(letter)
-            sys.stdout.flush()
-            time.sleep(0.1)
-print()
-slow_scroll("CHAPTER II - INCESSANT FAMILIARITY")
-def slow_scroll(str):
-        for letter in str:
-            sys.stdout.write(letter)
-            sys.stdout.flush()
-            time.sleep(slow_scroll_speed)
 while die_end_time == 0:
+ def slow_scroll(str):
+         for letter in str:
+             sys.stdout.write(letter)
+             sys.stdout.flush()
+             time.sleep(0.1)
+ print()
+ slow_scroll("CHAPTER II - INCESSANT FAMILIARITY")
+ def slow_scroll(str):
+         for letter in str:
+             sys.stdout.write(letter)
+             sys.stdout.flush()
+             time.sleep(slow_scroll_speed)
  print()
  print()
  slow_scroll("the memories end as you open your eyes... a familiar retched scent lingering around you. You get up as the aroma leaves you again... a long dimly lit corridor stands before you. behind you an exit. do you leave?")
@@ -358,6 +366,25 @@ if rher == True:
     print()
     print()
     print("-------------------------------------")
+if rher == True:
+    slow_scroll("-OLD GOD OF TRICKERY-\ninstall: automatically equipped at no expense")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+    static_bar = True
+if rher == True:
+    slow_scroll("-OLD GOD OF TRICKERY-\nextract: when on the brink of insanity release all static charge in a AOE attack. momentarily stunning enemies for 2 turns and reseting your mental. costs a little focus.")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+if rher == True:
+    slow_scroll("-OLD GOD OF TRICKERY-\nimplant: relative to nearness of insanity. implant a concept into the brain of your enemy. costs a little focus.")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
 slow_scroll("-OLD GOD OF THE DEPTHS-\ndomain expansion, malevolent shrine: a domain expansion means to create an area where a second ability can trigger with a sure-hit effect. for malevolent shrine that sure-hit is a series of continuous cuts and slashes. Also, when used within the black sparks of awakening, a new skill is learned... costs all focus")
 print()
 print()
@@ -371,6 +398,12 @@ if gro_goroth == True:
     print("-------------------------------------")
 if gro_goroth == True:
     slow_scroll("-OLD GOD OF DESTRUCTION-\nconvergance: spill some blood. said blood will take the shape of 3 spheres around you. when an enemy attacks the sphere will automatically explode. dealing counter damage and making sure-hit attacks easier to dodge. costs only some focus.")
+    print()
+    print()
+    print()
+    print("-------------------------------------")
+if gro_goroth == True:
+    slow_scroll("-OLD GOD OF DESTRUCTION-\nFREE\nbloodcurdle: after hitting a critical with your normal attack. lick the blood off your blade and cause the enemies blood to be still. freezing the enemy for 3 turns. costs some focus")
     print()
     print()
     print()
@@ -400,11 +433,17 @@ if rher == True:
      print()
      turns_skill_amount = turns_skill_amount + 1
      print()
+if rher == True:
+ slow_scroll("do you want skill *extract*? (Y/N)")
  print()
- if skill_input_choice == "Y" and turns_skill_amount == 3:
-    slow_scroll(">max skills equipped<")
-    print()
-    print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+     print()
+     extract = True
+     slow_scroll("extract equipped")
+     print()
+     turns_skill_amount = turns_skill_amount + 1
+     print()
 slow_scroll("do you want skill *domain expansion: malevolent shrine*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
@@ -428,6 +467,20 @@ if gro_goroth == True:
      print()
      slow_scroll("piercing blood equipped")
      turns_skill_amount = turns_skill_amount + 1
+     print()
+     print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+if gro_goroth == True:
+ slow_scroll("do you want skill *bloodcurdle*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+     bloodcurdle = True
+     print()
+     slow_scroll("bloodcurdle equipped")
      print()
      print()
  if skill_input_choice == "Y" and turns_skill_amount == 3:
@@ -466,6 +519,41 @@ if sylvian == True:
 while enemy_health > 1 and player_health > 1:
   turns = turns + 1
   print()
+  if static_bar == True:
+      if static_bar_timer == 0:
+          print("{    }")
+      if static_bar_timer == 1:
+          print("{▓   }")
+      if static_bar_timer == 2:
+          print("{▓▓  }")
+      if static_bar_timer == 3:
+          print("{▓▓▓ }")
+          damage = random.randint(15, 30)
+          player_health = player_health - damage
+          print()
+          slow_scroll(f"your head hurts... you take {damage} damage")
+          print()
+      if static_bar_timer == 4:
+          print("{▓▓▓▓}")
+          damage = random.randint(50, 75)
+          player_health = player_health - damage
+          print()
+          slow_scroll(f"your mental deteriorates... you take {damage} damage")
+          print()
+      if static_bar_timer >= 5:
+          print("{████}")
+          damage = random.randint(100, 200)
+          player_health = player_health - damage
+          print()
+          slow_scroll(f"your mind is shattering... you take {damage} damage")
+          print()
+  print()
+  if bleeding_player == True:
+      print()
+      bleeding_player_damage = random.randint(5, 10)
+      player_health = player_health - bleeding_player_damage
+      slow_scroll(f"you take {bleeding_player_damage} bleeding damage...")
+      print()
   slow_scroll(f">{player_health} HP")
   print()
   slow_scroll(f">{focus} focus")
@@ -484,16 +572,6 @@ while enemy_health > 1 and player_health > 1:
   slow_scroll("(run)")
   print()
   print()
-  if bleeding_player == True:
-      print()
-      bleeding_player_damage = random.randint(5, 10)
-      player_health = player_health - bleeding_player_damage
-      if turns == 1:
-       slow_scroll(f"a sharp pain reminds you of your bleeding... you take {bleeding_player_damage} damage")
-      else:
-       slow_scroll(f"you take {bleeding_player_damage} damage...")
-      print()
-      print()
   while input_true == True:   
    input_player = input("").lower()
    if input_player == "talk":
@@ -598,6 +676,12 @@ while enemy_health > 1 and player_health > 1:
       if convergance == True:
           slow_scroll("[convergance] - 6 *1*")
           print()
+      if bloodcurdle == True and crit_on == True:
+          slow_scroll("[bloodcurdle] - 7 *1*")
+          print()
+      if extract == True and static_bar_timer >= 3:
+          slow_scroll("[extract] - 8 *1*")
+          print()
       print()
       print()
       if skill_timer == 1:
@@ -633,6 +717,8 @@ while enemy_health > 1 and player_health > 1:
           focus = focus - 2
           damage_player = random.randint(5, 15)
           damage = random.randint(50, 75)
+          if gro_goroth == True:
+              damage = damage * 1.25
           if skill_timer == 1:
            slow_scroll(f"you force blood out the palms of you hands. you take {damage_player} damage. the blood remains in the air for a moment before you place both hands around the blood and compress with all your might. then opening a small hole from which the enemy stands. the piercing blood shoots out! dealing {damage} damage!")
           else:
@@ -641,7 +727,39 @@ while enemy_health > 1 and player_health > 1:
           enemy_health = enemy_health - damage
           player_health = player_health - damage_player
           print()
+          static_bar_timer = 0
          elif focus < 2:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "8" and extract == True:
+         if focus >= 1:
+          focus = focus - 1
+          damage = random.randint(15, 30)
+          if gro_goroth == True:
+              damage = damage * 1.25
+          if extract_first == False:
+           slow_scroll(f"your entire vision buzzes static as a searing pain rings throughout your mind. causing you to instictively clutch your head. the pain escalates before releasing! dealing {damage} damage! when you come back to it the static eases as everyone is frozen... you try to catch your breath")
+           extract_first = True
+          else:
+           slow_scroll(f"you clutch your head and release your insanity. dealing {damage} damage and stunning everyone.")
+          enemy_health = enemy_health - damage
+          print()
+          enemy_freeze = enemy_freeze + 2
+          enemy_freeze_rher = True
+          static_bar_timer = -1
+         elif focus < 1:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
+      if input_player_skill == "7" and bloodcurdle == True and crit_on == True:
+         if focus >= 1:
+          focus = focus - 1
+          slow_scroll("the lick the blood off the blade as you see the enemy freeze...")
+          crit_on = False
+          enemy_freeze = enemy_freeze + 3
+          print()
+         elif focus < 1:
              print()
              slow_scroll("you aren't focused enough...")
              print()
@@ -666,6 +784,8 @@ while enemy_health > 1 and player_health > 1:
       if input_player_skill == "3.5" and black_flash_profiency == 1 and shrine == True:
         print()
         damage = random.randint(400, 600)
+        if gro_goroth == True:
+            damage = damage * 1.25
         slow_scroll(f"you slowly bring your arm back, and throw it in the direction of the enemy! the space between the enemy splits in two, dealing {damage} damage")
         shrine = False
         focus = 0
@@ -692,6 +812,8 @@ while enemy_health > 1 and player_health > 1:
                   slow_scroll("hit a black flash! sparks fly, your profiency increases.")
                   focus = focus + 1
                   damage = random.randint(25, 35)
+                  if gro_goroth == True:
+                      damage = damage * 1.25
                   damage = round(damage * 3)
                   if focus >= 1:
                       damage = round(damage * 1.3)
@@ -710,6 +832,8 @@ while enemy_health > 1 and player_health > 1:
                   slow_scroll("black flash!")
                   focus = focus + 1
                   damage = random.randint(25, 35)
+                  if gro_goroth == True:
+                      damage = damage * 1.25
                   if focus >= 1:
                       damage = round(damage * 1.3)
                   damage = round(damage * 3)
@@ -725,6 +849,8 @@ while enemy_health > 1 and player_health > 1:
                   print()
                   slow_scroll("hit! but no sparks... regardless, your profiency inreases.")
                   damage = random.randint(20, 25)
+                  if gro_goroth == True:
+                      damage = damage * 1.25
                   if focus >= 1:
                       damage = round(damage * 1.3)
                   if infinity_counter == True:
@@ -761,6 +887,8 @@ while enemy_health > 1 and player_health > 1:
                   turns_flash = True
                   turns_flash_counter = turns_flash_counter + 1
                   damage = random.randint(25, 35)
+                  if gro_goroth == True:
+                      damage = damage * 1.25
                   damage = round(damage * 2.5)
                   if focus >= 1:
                       damage = round(damage * 1.3)
@@ -819,15 +947,18 @@ while enemy_health > 1 and player_health > 1:
           print()
           slow_scroll("you swing... you miss...")
       else:
-       crit_chance = random.randint(1, 10)
+       crit_chance = random.randint(1, 1)
        print()
        if crit_chance == 1:
+           crit_on = True
            if turns == 1:
                print()
                slow_scroll("you unsheath your blade...")
                print()
            bleeding_enemy = True
            damage = random.randint(35, 45)
+           if gro_goroth == True:
+               damage = damage * 1.25
            if black_flash_profiency == 1:
                print()
                slow_scroll("your slash leaves remnants of black sparks...")
@@ -842,6 +973,8 @@ while enemy_health > 1 and player_health > 1:
            slow_scroll(f"you plunge your sword into the creature, hitting an artery & dealing {damage} damage!")
        else:
            damage = random.randint(35, 45)
+           if gro_goroth == True:
+               damage = damage * 1.25
            if black_flash_profiency == 1:
                print()
                slow_scroll("your slash leaves remnants of black sparks...")
@@ -884,6 +1017,8 @@ while enemy_health > 1 and player_health > 1:
   print()
   if shrine == True:
       damage = random.randint(20, 30)
+      if gro_goroth == True:
+          damage = damage * 1.25
       if black_flash_profiency == 2:
           damage = round(damage * 1.3)
           print()
@@ -998,91 +1133,39 @@ while enemy_health > 1 and player_health > 1:
       elif lady_death == True:
           slow_scroll("the lady is mutilated further...")
           print()
-  enemy_hit_chance = random.randint(1, 20)
-  input_enemy = random.randint(1, 5)
-  if enemy_charge == True:
-      input_enemy = 5
-  if bleeding_enemy == True:
-      print()
-      bleeding_enemy_damage = random.randint(15,20)
-      enemy_health = enemy_health - bleeding_enemy_damage
-      slow_scroll(f"blood trickles from it's open wound... dealing {bleeding_enemy_damage} damage")
-  if input_enemy == 4:
-      print()
-      slow_scroll("the thing glares at you...")
-      print()
-  if input_enemy == 1 or input_enemy == 2 or input_enemy == 3:
-     if infinity_counter == True:
-          print()
-          slow_scroll("the creature lunges at you... before slowing down and coming to a complet stop right in front of you...")
-          infinity_counter = False
-     else:
-      if convergance_counter == True:
-          print()
-          slow_scroll("the creature lunges at you... as you flinch, your three spheres explode like shrapnel. hitting the enemy for...")
-          print()
-          convergance_1 = random.randint(10, 20)
-          convergance_2 = random.randint(10, 20)
-          convergance_3 = random.randint(10, 20)
-          enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
-          slow_scroll(f"{convergance_1}")
-          print()
-          slow_scroll(f"{convergance_2}")
-          print()
-          slow_scroll(f"{convergance_3}")
-          print()
-          slow_scroll("damage!")
-          convergance_counter = False
-      else:
-       if enemy_hit_chance == 1:
-          print()
-          slow_scroll("the creature lunges at you... you dodge")
-          print()
-       else:
-        damage_enemy_1 = random.randint(20, 35)
-        damage_enemy_2 = random.randint(20, 35)
-        crit_chance_enemy = random.randint(1, 15)
-        print()
-        if crit_chance_enemy == 1:
-           bleeding_player = True
-           damage_enemy_1 = round((damage_enemy_1) * 2)
-           damage_enemy_2 = round((damage_enemy_2) * 2)
-           if defense == True:
-               damage_enemy_1 = round(damage_enemy_1 / 2)
-               damage_enemy_2 = round(damage_enemy_2 / 2)
-               bleeding_player = False
-           if focus == 3:
-               damage_enemy_1 = round(damage_enemy_1 / 1.3)
-               damage_enemy_2 = round(damage_enemy_2 / 1.3)
-               bleeding_player = False
-           player_health = player_health - (damage_enemy_1 + damage_enemy_2)
-           slow_scroll(f"the creature slashes wildy at you. Its chiped nails dig into your neck, hitting an artery. dealing {damage_enemy_1} & {damage_enemy_2} damage.")
-        else:
-           if defense == True:
-               damage_enemy_1 = round(damage_enemy_1 / 2)
-               damage_enemy_2 = round(damage_enemy_2 / 2)
-           if focus == 3:
-               damage_enemy_1 = round(damage_enemy_1 / 1.3)
-               damage_enemy_2 = round(damage_enemy_2 / 1.3)
-           player_health = player_health - (damage_enemy_1 + damage_enemy_2)
-           slow_scroll(f"the creature slashes wildy at you. dealing {damage_enemy_1} & {damage_enemy_2} damage")
-        print()
-        print()
-  if input_enemy == 5 and enemy_charge == True:
-      turn_it_off = True
-      slow_scroll("the thing quickly lunges at you!")
-      print()
+  if enemy_freeze <= 0:
+   enemy_hit_chance = random.randint(1, 20)
+   input_enemy = random.randint(1, 5)
+   if enemy_charge == True:
+       input_enemy = 5
+   if bleeding_enemy == True:
+       print()
+       bleeding_enemy_damage = random.randint(15,20)
+       enemy_health = enemy_health - bleeding_enemy_damage
+       slow_scroll(f"blood trickles from it's open wound... dealing {bleeding_enemy_damage} damage")
+   if input_enemy == 4:
+       print()
+       slow_scroll("the thing glares at you...")
+       print()
+   if input_enemy == 1 or input_enemy == 2 or input_enemy == 3:
       if infinity_counter == True:
-          slow_scroll("right as its nails are about to dig into your eyes, it slows down to a complete stop... it tries to pull away but can't")
-          print()
+           print()
+           slow_scroll("the creature lunges at you... before slowing down and coming to a complet stop right in front of you...")
+           infinity_counter = False
       else:
        if convergance_counter == True:
            print()
-           slow_scroll("you flinch as the spheres explode. slowing down the enemy... and dealing")
-           convergance_1 = random.randint(10, 20)
-           convergance_2 = random.randint(10, 20)
-           convergance_3 = random.randint(10, 20)
+           slow_scroll("the creature lunges at you... as you flinch, your three spheres explode like shrapnel. hitting the enemy for...")
            print()
+           convergance_1 = random.randint(10, 20)
+           if gro_goroth == True:
+               convergance_1 = convergance_1 * 1.25
+           convergance_2 = random.randint(10, 20)
+           if gro_goroth == True:
+               convergance_2 = convergance_2 * 1.25
+           convergance_3 = random.randint(10, 20)
+           if gro_goroth == True:
+               convergance_3 = convergance_3 * 1.25
            enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
            slow_scroll(f"{convergance_1}")
            print()
@@ -1091,168 +1174,220 @@ while enemy_health > 1 and player_health > 1:
            slow_scroll(f"{convergance_3}")
            print()
            slow_scroll("damage!")
-           print()
-           coin_flip = random.randint(1, 2)
            convergance_counter = False
-           coin_flip_input = input("heads or tails?: ")
-           print()
-           print()
-           if coin_flip_input == "heads":
-               def slow_scroll(str):
-                       for letter in str:
-                           sys.stdout.write(letter)
-                           sys.stdout.flush()
-                           time.sleep(0.1)
-               slow_scroll("flipping...")
-           if coin_flip_input == "tails":
-               def slow_scroll(str):
-                       for letter in str:
-                           sys.stdout.write(letter)
-                           sys.stdout.flush()
-                           time.sleep(0.1)
-               slow_scroll("flipping...")
-           print()
-           slow_scroll("coin landed on...")
-           print()
-           print()
-           def slow_scroll(str):
-                   for letter in str:
-                       sys.stdout.write(letter)
-                       sys.stdout.flush()
-                       time.sleep(slow_scroll_speed)
-           if coin_flip == 1:
-               slow_scroll("heads!")
-               print()
-           elif coin_flip == 2:
-               slow_scroll("tails!")
-               print()
-           print()
-           if coin_flip == 1 and coin_flip_input == "heads":
-               slow_scroll("you guessed correct.")
-               coin_flip_result = True
-           elif coin_flip == 2 and coin_flip_input == "tails":
-               slow_scroll("you guessed correct.")
-               coin_flip_result = True
-           else:
-               slow_scroll("you guessed wrong.")
-               print()
-               coin_flip_result = False
-           if coin_flip_result == False:
-               coin_flip = random.randint(1, 2)
-               coin_flip_input = input("heads or tails?: ")
-               print()
-               print()
-               if coin_flip_input == "heads":
-                   def slow_scroll(str):
-                           for letter in str:
-                               sys.stdout.write(letter)
-                               sys.stdout.flush()
-                               time.sleep(0.1)
-                   slow_scroll("flipping...")
-               if coin_flip_input == "tails":
-                   def slow_scroll(str):
-                           for letter in str:
-                               sys.stdout.write(letter)
-                               sys.stdout.flush()
-                               time.sleep(0.1)
-                   slow_scroll("flipping...")
-               print()
-               slow_scroll("coin landed on...")
-               print()
-               print()
-               def slow_scroll(str):
-                       for letter in str:
-                           sys.stdout.write(letter)
-                           sys.stdout.flush()
-                           time.sleep(slow_scroll_speed)
-               if coin_flip == 1:
-                   slow_scroll("heads!")
-               elif coin_flip == 2:
-                   slow_scroll("tails!")
-               print()
-               if coin_flip == 1 and coin_flip_input == "heads":
-                   slow_scroll("you guessed correct.")
-                   print
-                   coin_flip_result = True
-               elif coin_flip == 2 and coin_flip_input == "tails":
-                   slow_scroll("you guessed correct.")
-                   print()
-                   coin_flip_result = True
-               else:
-                   slow_scroll("you guessed wrong.")
-                   coin_flip_result_2 = False
-                   print()
-           print()
-           if coin_flip_result == False and coin_flip_result_2 == False:
-            slow_scroll("its nails dig into your throat and rips out your esophagus...")
-            print()
-            slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
-            print()
-            slow_scroll("you've died...")
-            print()
-            time.sleep(5)
-            sys.exit()
-            print()
-           elif coin_flip_result == True or coin_flip_result_2 == True:
-             slow_scroll("you barely dodge the attack.")
-             print()
        else:
-        if defense == True:
-         coin_flip = random.randint(1, 2)
-         coin_flip_input = input("heads or tails?: ")
-         print()
-         print()
-         if coin_flip_input == "heads":
-             def slow_scroll(str):
-                     for letter in str:
-                         sys.stdout.write(letter)
-                         sys.stdout.flush()
-                         time.sleep(0.1)
-             slow_scroll("flipping...")
-         if coin_flip_input == "tails":
-             def slow_scroll(str):
-                     for letter in str:
-                         sys.stdout.write(letter)
-                         sys.stdout.flush()
-                         time.sleep(0.1)
-             slow_scroll("flipping...")
-         print()
-         slow_scroll("coin landed on...")
-         print()
-         print()
-         def slow_scroll(str):
-                 for letter in str:
-                     sys.stdout.write(letter)
-                     sys.stdout.flush()
-                     time.sleep(slow_scroll_speed)
-         if coin_flip == 1:
-             slow_scroll("heads!")
-         elif coin_flip == 2:
-             slow_scroll("tails!")
-         print()
-         if coin_flip == 1 and coin_flip_input == "heads":
-             slow_scroll("you guessed correct.")
-             coin_flip_result = True
-         elif coin_flip == 2 and coin_flip_input == "tails":
-             slow_scroll("you guessed correct.")
-             coin_flip_result = True
-         else:
-             slow_scroll("you guessed wrong.")
-             coin_flip_result = False
-         if coin_flip_result == False:
-          slow_scroll("its nails dig into your throat and rips out your esophagus...")
-          print()
-          slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
-          print()
-          slow_scroll("you've died...")
-          print()
-          time.sleep(5)
-          sys.exit()
-          print()
-         elif coin_flip_result == True:
-           slow_scroll("your buckler just barely blocks the attack...")
+        if enemy_hit_chance == 1:
+           print()
+           slow_scroll("the creature lunges at you... you dodge")
            print()
         else:
+         damage_enemy_1 = random.randint(20, 35)
+         damage_enemy_2 = random.randint(20, 35)
+         crit_chance_enemy = random.randint(1, 15)
+         print()
+         if crit_chance_enemy == 1:
+            bleeding_player = True
+            damage_enemy_1 = round((damage_enemy_1) * 2)
+            damage_enemy_2 = round((damage_enemy_2) * 2)
+            if defense == True:
+                damage_enemy_1 = round(damage_enemy_1 / 2)
+                damage_enemy_2 = round(damage_enemy_2 / 2)
+                bleeding_player = False
+            if focus == 3:
+                damage_enemy_1 = round(damage_enemy_1 / 1.3)
+                damage_enemy_2 = round(damage_enemy_2 / 1.3)
+                bleeding_player = False
+            player_health = player_health - (damage_enemy_1 + damage_enemy_2)
+            slow_scroll(f"the creature slashes wildy at you. Its chiped nails dig into your neck, hitting an artery. dealing {damage_enemy_1} & {damage_enemy_2} damage.")
+         else:
+            if defense == True:
+                damage_enemy_1 = round(damage_enemy_1 / 2)
+                damage_enemy_2 = round(damage_enemy_2 / 2)
+            if focus == 3:
+                damage_enemy_1 = round(damage_enemy_1 / 1.3)
+                damage_enemy_2 = round(damage_enemy_2 / 1.3)
+            player_health = player_health - (damage_enemy_1 + damage_enemy_2)
+            slow_scroll(f"the creature slashes wildy at you. dealing {damage_enemy_1} & {damage_enemy_2} damage")
+         print()
+         print()
+   if input_enemy == 5 and enemy_charge == True:
+       turn_it_off = True
+       slow_scroll("the thing quickly lunges at you!")
+       print()
+       if infinity_counter == True:
+           slow_scroll("right as its nails are about to dig into your eyes, it slows down to a complete stop... it tries to pull away but can't")
+           print()
+       else:
+        if convergance_counter == True:
+            print()
+            slow_scroll("you flinch as the spheres explode. slowing down the enemy... and dealing")
+            convergance_1 = random.randint(10, 20)
+            if gro_goroth == True:
+                convergance_1 = convergance_1 * 1.25
+            convergance_2 = random.randint(10, 20)
+            if gro_goroth == True:
+                convergance_2 = convergance_2 * 1.25
+            convergance_3 = random.randint(10, 20)
+            if gro_goroth == True:
+                convergance_3 = convergance_3 * 1.25
+            print()
+            enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
+            slow_scroll(f"{convergance_1}")
+            print()
+            slow_scroll(f"{convergance_2}")
+            print()
+            slow_scroll(f"{convergance_3}")
+            print()
+            slow_scroll("damage!")
+            print()
+            coin_flip = random.randint(1, 2)
+            convergance_counter = False
+            coin_flip_input = input("heads or tails?: ")
+            print()
+            print()
+            if coin_flip_input == "heads":
+                def slow_scroll(str):
+                        for letter in str:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(0.1)
+                slow_scroll("flipping...")
+            if coin_flip_input == "tails":
+                def slow_scroll(str):
+                        for letter in str:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(0.1)
+                slow_scroll("flipping...")
+            print()
+            slow_scroll("coin landed on...")
+            print()
+            print()
+            def slow_scroll(str):
+                    for letter in str:
+                        sys.stdout.write(letter)
+                        sys.stdout.flush()
+                        time.sleep(slow_scroll_speed)
+            if coin_flip == 1:
+                slow_scroll("heads!")
+                print()
+            elif coin_flip == 2:
+                slow_scroll("tails!")
+                print()
+            print()
+            if coin_flip == 1 and coin_flip_input == "heads":
+                slow_scroll("you guessed correct.")
+                coin_flip_result = True
+            elif coin_flip == 2 and coin_flip_input == "tails":
+                slow_scroll("you guessed correct.")
+                coin_flip_result = True
+            else:
+                slow_scroll("you guessed wrong.")
+                print()
+                coin_flip_result = False
+            if coin_flip_result == False:
+                coin_flip = random.randint(1, 2)
+                coin_flip_input = input("heads or tails?: ")
+                print()
+                print()
+                if coin_flip_input == "heads":
+                    def slow_scroll(str):
+                            for letter in str:
+                                sys.stdout.write(letter)
+                                sys.stdout.flush()
+                                time.sleep(0.1)
+                    slow_scroll("flipping...")
+                if coin_flip_input == "tails":
+                    def slow_scroll(str):
+                            for letter in str:
+                                sys.stdout.write(letter)
+                                sys.stdout.flush()
+                                time.sleep(0.1)
+                    slow_scroll("flipping...")
+                print()
+                slow_scroll("coin landed on...")
+                print()
+                print()
+                def slow_scroll(str):
+                        for letter in str:
+                            sys.stdout.write(letter)
+                            sys.stdout.flush()
+                            time.sleep(slow_scroll_speed)
+                if coin_flip == 1:
+                    slow_scroll("heads!")
+                elif coin_flip == 2:
+                    slow_scroll("tails!")
+                print()
+                if coin_flip == 1 and coin_flip_input == "heads":
+                    slow_scroll("you guessed correct.")
+                    print
+                    coin_flip_result = True
+                elif coin_flip == 2 and coin_flip_input == "tails":
+                    slow_scroll("you guessed correct.")
+                    print()
+                    coin_flip_result = True
+                else:
+                    slow_scroll("you guessed wrong.")
+                    coin_flip_result_2 = False
+                    print()
+            print()
+            if coin_flip_result == False and coin_flip_result_2 == False:
+             slow_scroll("its nails dig into your throat and rips out your esophagus...")
+             print()
+             slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
+             print()
+             slow_scroll("you've died...")
+             print()
+             time.sleep(5)
+             sys.exit()
+             print()
+            elif coin_flip_result == True or coin_flip_result_2 == True:
+              slow_scroll("you barely dodge the attack.")
+              print()
+        else:
+         if defense == True:
+          coin_flip = random.randint(1, 2)
+          coin_flip_input = input("heads or tails?: ")
+          print()
+          print()
+          if coin_flip_input == "heads":
+              def slow_scroll(str):
+                      for letter in str:
+                          sys.stdout.write(letter)
+                          sys.stdout.flush()
+                          time.sleep(0.1)
+              slow_scroll("flipping...")
+          if coin_flip_input == "tails":
+              def slow_scroll(str):
+                      for letter in str:
+                          sys.stdout.write(letter)
+                          sys.stdout.flush()
+                          time.sleep(0.1)
+              slow_scroll("flipping...")
+          print()
+          slow_scroll("coin landed on...")
+          print()
+          print()
+          def slow_scroll(str):
+                  for letter in str:
+                      sys.stdout.write(letter)
+                      sys.stdout.flush()
+                      time.sleep(slow_scroll_speed)
+          if coin_flip == 1:
+              slow_scroll("heads!")
+          elif coin_flip == 2:
+              slow_scroll("tails!")
+          print()
+          if coin_flip == 1 and coin_flip_input == "heads":
+              slow_scroll("you guessed correct.")
+              coin_flip_result = True
+          elif coin_flip == 2 and coin_flip_input == "tails":
+              slow_scroll("you guessed correct.")
+              coin_flip_result = True
+          else:
+              slow_scroll("you guessed wrong.")
+              coin_flip_result = False
+          if coin_flip_result == False:
            slow_scroll("its nails dig into your throat and rips out your esophagus...")
            print()
            slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
@@ -1261,67 +1396,92 @@ while enemy_health > 1 and player_health > 1:
            print()
            time.sleep(5)
            sys.exit()
-  if input_enemy == 5 and enemy_charge == False:
-      slow_scroll("the thing lowers its stance & brings its arms back...")
-      enemy_charge = True
-  if turn_it_off == True:
-      enemy_charge = False
-      turn_it_off = False
-  infinity_counter = False
-  defense = False
-  if enemy_health <= 0 and rebirth == False and lady_death == False and shrine == False:
-      rebirth = True
-      print()
-      coin_flip = random.randint(1, 2)
-      coin_flip_input = input("heads or tails?: ")
-      print()
-      print()
-      if coin_flip_input == "heads":
-          def slow_scroll(str):
-                  for letter in str:
-                      sys.stdout.write(letter)
-                      sys.stdout.flush()
-                      time.sleep(0.1)
-          slow_scroll("flipping...")
-      if coin_flip_input == "tails":
-          def slow_scroll(str):
-                  for letter in str:
-                      sys.stdout.write(letter)
-                      sys.stdout.flush()
-                      time.sleep(0.1)
-          slow_scroll("flipping...")
-      print()
-      slow_scroll("coin landed on...")
-      print()
-      print()
-      def slow_scroll(str):
-              for letter in str:
-                  sys.stdout.write(letter)
-                  sys.stdout.flush()
-                  time.sleep(slow_scroll_speed)
-      if coin_flip == 1:
-          slow_scroll("heads!")
-      elif coin_flip == 2:
-          slow_scroll("tails!")
-      print()
-      if coin_flip == 1 and coin_flip_input == "heads":
-          slow_scroll("you guessed correct.")
-          coin_flip_result = True
-      elif coin_flip == 2 and coin_flip_input == "tails":
-          slow_scroll("you guessed correct.")
-          coin_flip_result = True
-      else:
-          slow_scroll("you guessed wrong.")
-          coin_flip_result = False
-      if coin_flip_result == False:
-       slow_scroll("the creature falls... but it's head doesnt. instead leaping from one corpse to another, ripping off the womans head with small claws and climbing in...")
-       enemy_health = 150 
-       lady_death = True
+           print()
+          elif coin_flip_result == True:
+            slow_scroll("your buckler just barely blocks the attack...")
+            print()
+         else:
+            slow_scroll("its nails dig into your throat and rips out your esophagus...")
+            print()
+            slow_scroll("the creature, now holding what was once yours, is the last thing you see, as you try and fail to breath...")
+            print()
+            slow_scroll("you've died...")
+            print()
+            time.sleep(5)
+            sys.exit()
+   if input_enemy == 5 and enemy_charge == False:
+       slow_scroll("the thing lowers its stance & brings its arms back...")
+       enemy_charge = True
+   if turn_it_off == True:
+       enemy_charge = False
+       turn_it_off = False
+   infinity_counter = False
+   defense = False
+   if enemy_health <= 0 and rebirth == False and lady_death == False and shrine == False:
+       rebirth = True
        print()
-      elif coin_flip_result == True:
-       slow_scroll("the creature falls...")
+       coin_flip = random.randint(1, 2)
+       coin_flip_input = input("heads or tails?: ")
        print()
-  input_true = True
+       print()
+       if coin_flip_input == "heads":
+           def slow_scroll(str):
+                   for letter in str:
+                       sys.stdout.write(letter)
+                       sys.stdout.flush()
+                       time.sleep(0.1)
+           slow_scroll("flipping...")
+       if coin_flip_input == "tails":
+           def slow_scroll(str):
+                   for letter in str:
+                       sys.stdout.write(letter)
+                       sys.stdout.flush()
+                       time.sleep(0.1)
+           slow_scroll("flipping...")
+       print()
+       slow_scroll("coin landed on...")
+       print()
+       print()
+       def slow_scroll(str):
+               for letter in str:
+                   sys.stdout.write(letter)
+                   sys.stdout.flush()
+                   time.sleep(slow_scroll_speed)
+       if coin_flip == 1:
+           slow_scroll("heads!")
+       elif coin_flip == 2:
+           slow_scroll("tails!")
+       print()
+       if coin_flip == 1 and coin_flip_input == "heads":
+           slow_scroll("you guessed correct.")
+           coin_flip_result = True
+       elif coin_flip == 2 and coin_flip_input == "tails":
+           slow_scroll("you guessed correct.")
+           coin_flip_result = True
+       else:
+           slow_scroll("you guessed wrong.")
+           coin_flip_result = False
+       if coin_flip_result == False:
+        slow_scroll("the creature falls... but it's head doesnt. instead leaping from one corpse to another, ripping off the womans head with small claws and climbing in...")
+        enemy_health = 150 
+        lady_death = True
+        print()
+       elif coin_flip_result == True:
+        slow_scroll("the creature falls...")
+        print()
+   input_true = True
+  if enemy_freeze >= 1 and enemy_freeze_rher == False:
+      slow_scroll("the enemy is frozen... ")
+      enemy_freeze = enemy_freeze - 1
+      print()
+  elif enemy_freeze >= 1 and enemy_freeze_rher == True:
+      slow_scroll("the enemy is frozen... Intoxicated with a sinister smile...")
+      enemy_freeze = enemy_freeze - 1
+      print()
+  elif enemy_freeze <= 0 and enemy_freeze_rher == True:
+      enemy_freeze_rher = False
+      print()
+  static_bar_timer = static_bar_timer + 1
 print()
 print()
 if player_health >= 1:
