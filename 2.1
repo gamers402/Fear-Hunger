@@ -92,6 +92,7 @@ dirt = 0
 sanity_potion = 0
 defense_potion = 0
 strength_potion_turns = 0
+life_steal_first = False
 
 def random_dialogue():
     x = random.randint(1, 10)
@@ -986,6 +987,12 @@ while enemy_health > 1 and player_health > 1:
       if implant == True and static_bar_timer >= 1 and static_bar_timer != 4:
           slow_scroll("[implant] - 9 *1*")
           print()
+      if life_steal == True and reverse_healing_mastered == False:
+          slow_scroll("[life steal] - 10 *2*")
+          print()
+      if life_steal == True and reverse_healing_mastered == True:
+          slow_scroll("[vampiric bite] - 11 *1*")
+          print()
       print()
       print()
       if skill_timer == 1:
@@ -995,6 +1002,130 @@ while enemy_health > 1 and player_health > 1:
       input_player_skill = input("")
       print()
       print()
+      if input_player_skill == "10" and life_steal == True:
+         if focus >= 2:
+          focus = focus - 2
+          player_health_heal = random.randint(50, 100)
+          damage = player_health_heal
+          if life_steal_first == True:
+              slow_scroll(f"you lower you hand... your nails quickly elongate and sharpen as you lunge at the enemy")
+              print()
+              coin_flip = random.randint(1, 2)
+              coin_flip_input = input("heads or tails?: ")
+              print()
+              print()
+              if coin_flip_input == "heads":
+                  def slow_scroll(str):
+                          for letter in str:
+                              sys.stdout.write(letter)
+                              sys.stdout.flush()
+                              time.sleep(0.1)
+                  slow_scroll("flipping...")
+              if coin_flip_input == "tails":
+                  def slow_scroll(str):
+                          for letter in str:
+                              sys.stdout.write(letter)
+                              sys.stdout.flush()
+                              time.sleep(0.1)
+                  slow_scroll("flipping...")
+              print()
+              slow_scroll("coin landed on...")
+              print()
+              print()
+              def slow_scroll(str):
+                      for letter in str:
+                          sys.stdout.write(letter)
+                          sys.stdout.flush()
+                          time.sleep(slow_scroll_speed)
+              if coin_flip == 1:
+                  slow_scroll("heads!")
+              elif coin_flip == 2:
+                  slow_scroll("tails!")
+              print()
+              if coin_flip == 1 and coin_flip_input == "heads":
+                  slow_scroll("you guessed correct.")
+                  coin_flip_result = True
+              elif coin_flip == 2 and coin_flip_input == "tails":
+                  slow_scroll("you guessed correct.")
+                  coin_flip_result = True
+              else:
+                  slow_scroll("you guessed wrong.")
+                  coin_flip_result = False
+              if coin_flip_result == False:
+                  print()
+                  slow_scroll("you missed...")
+              elif coin_flip_result == True:
+                  print()
+                  slow_scroll("you hit! your plunge your nails through the side of your enemy. you fingers between it's ribs as you feel further from death...")
+                  print()
+                  slow_scroll(f"you heal {player_health_heal}!")
+                  print()
+                  slow_scroll(f"you deal {damage} damage!")
+                  print()
+                  player_health = player_health + player_health_heal
+                  enemy_health = enemy_health - damage
+              life_steal_first = False
+          else:
+              print()
+              coin_flip = random.randint(1, 2)
+              coin_flip_input = input("heads or tails?: ")
+              print()
+              print()
+              if coin_flip_input == "heads":
+                  def slow_scroll(str):
+                          for letter in str:
+                              sys.stdout.write(letter)
+                              sys.stdout.flush()
+                              time.sleep(0.1)
+                  slow_scroll("flipping...")
+              if coin_flip_input == "tails":
+                  def slow_scroll(str):
+                          for letter in str:
+                              sys.stdout.write(letter)
+                              sys.stdout.flush()
+                              time.sleep(0.1)
+                  slow_scroll("flipping...")
+              print()
+              slow_scroll("coin landed on...")
+              print()
+              print()
+              def slow_scroll(str):
+                      for letter in str:
+                          sys.stdout.write(letter)
+                          sys.stdout.flush()
+                          time.sleep(slow_scroll_speed)
+              if coin_flip == 1:
+                  slow_scroll("heads!")
+              elif coin_flip == 2:
+                  slow_scroll("tails!")
+              print()
+              if coin_flip == 1 and coin_flip_input == "heads":
+                  slow_scroll("you guessed correct.")
+                  coin_flip_result = True
+              elif coin_flip == 2 and coin_flip_input == "tails":
+                  slow_scroll("you guessed correct.")
+                  coin_flip_result = True
+              else:
+                  slow_scroll("you guessed wrong.")
+                  coin_flip_result = False
+              if coin_flip_result == False:
+                  print()
+                  slow_scroll("you missed...")
+              elif coin_flip_result == True:
+                  print()
+                  slow_scroll("you hit!")
+                  print()
+                  slow_scroll(f"you heal {player_health_heal}!")
+                  print()
+                  slow_scroll(f"you deal {damage} damage!")
+                  print()
+                  player_health = player_health + player_health_heal
+                  enemy_health = enemy_health - damage
+          infinity_counter = True
+         elif focus < 2:
+             print()
+             slow_scroll("you aren't focused enough...")
+             print()
       if input_player_skill == "1" and infinity == True:
          if focus >= 1:
           focus = focus - 1
