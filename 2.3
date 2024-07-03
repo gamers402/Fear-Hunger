@@ -92,7 +92,7 @@ dirt = 0
 sanity_potion = 0
 defense_potion = 0
 strength_potion_turns = 0
-life_steal_first = False
+life_steal_first = True
 
 def random_dialogue():
     x = random.randint(1, 10)
@@ -953,7 +953,7 @@ while enemy_health > 1 and player_health > 1:
       player_hit_chance = random.randint(1, 20)
       print()
       if infinity == True:
-          slow_scroll("[infinity] - 1 *1*")
+          slow_scroll("[infinity] - 1 *2*")
           print()
       if black_flash == True:
           slow_scroll("[black flash] - 2 *1*")
@@ -991,7 +991,7 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("[life steal] - 10 *2*")
           print()
       if life_steal == True and reverse_healing_mastered == True:
-          slow_scroll("[vampiric bite] - 11 *1*")
+          slow_scroll("[vampiric bite] - 10.5 *1*")
           print()
       print()
       print()
@@ -1008,7 +1008,7 @@ while enemy_health > 1 and player_health > 1:
           player_health_heal = random.randint(50, 100)
           damage = player_health_heal
           if life_steal_first == True:
-              slow_scroll(f"you lower you hand... your nails quickly elongate and sharpen as you lunge at the enemy")
+              slow_scroll("you lower you hand... your nails quickly elongate and sharpen as you lunge at the enemy")
               print()
               coin_flip = random.randint(1, 2)
               coin_flip_input = input("heads or tails?: ")
@@ -1121,17 +1121,16 @@ while enemy_health > 1 and player_health > 1:
                   print()
                   player_health = player_health + player_health_heal
                   enemy_health = enemy_health - damage
-          infinity_counter = True
          elif focus < 2:
              print()
              slow_scroll("you aren't focused enough...")
              print()
       if input_player_skill == "1" and infinity == True:
-         if focus >= 1:
-          focus = focus - 1
+         if focus >= 2:
+          focus = focus - 2
           slow_scroll("you briefly close your eyes and materialize the concept of infinity as an infinitely dense mass of air around you... ")
           infinity_counter = True
-         elif focus < 1:
+         elif focus < 2:
              print()
              slow_scroll("you aren't focused enough...")
              print()
