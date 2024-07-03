@@ -2,6 +2,10 @@
 
 import time, sys, random, platform, os
 
+print("Fear & Hunger & Hatred - NC")
+print()
+time.sleep(2)
+
 #slowscroll input
 
 x = ()
@@ -73,6 +77,21 @@ implant = False
 implant_input_on = False
 implant_first = True
 enemy_rot = False
+invoulnerability = False
+life_steal = False
+nom = False
+lady_nom = True
+strength_potion = 0
+lucky_coin = 0
+focus_potion = 0
+immortality_potion = 0
+death_potion = 0
+vitality_potion = 0
+flash_poitions = 0
+dirt = 0
+sanity_potion = 0
+defense_potion = 0
+strength_potion_turns = 0
 
 def random_dialogue():
     x = random.randint(1, 10)
@@ -109,7 +128,7 @@ while x != "Y" and x != "N":
         print("understood...")
         print()
         while slow_scroll_speed <= 0.009:
-         slow_scroll_speed = float(input("how fast would you like scroll test? please stick from the range 1 - 0.01 (1/0.1 would be slow... 0.01 would be fast): "))
+         slow_scroll_speed = float(input("how fast would you like scroll text? please stick from the range 1 - 0.01 (1/0.1 would be slow... 0.01 would be fast): "))
          def slow_scroll(str):
                 for letter in str:
                     sys.stdout.write(letter)
@@ -138,17 +157,26 @@ print()
 print()
 slow_scroll("skip exposition? (not reccomended on first playthrough)")
 print()
-skip = input("(Y/N): ").upper()
+skip = ()
+skip_on = False
+while skip_on == False:
+ skip = input("(Y/N):").upper()
+ if skip == "Y" or skip == "N":
+     skip_on = True
 os.system('cls')
 print("-----------------------------------------------------------------")
 print()
 if skip == "Y":
     slow_scroll("pick a god.")
     print()
-    slow_scroll("Gro-Goroth 1\nSylvian 2\nRher 3")
+    slow_scroll("Gro-Goroth 1\nSylvian (WIP) 2\nRher 3")
     print()
     print()
-    god_input = input("")
+    skip_on = False
+    while skip_on == False:
+     god_input = input("")
+     if god_input == "1" or god_input == "2" or god_input == "3":
+         skip_on = True
     os.system('cls')
     print("-----------------------------------------------------------------")
     print()
@@ -158,17 +186,95 @@ if skip == "Y":
         sylvian = True
     if god_input == "3":
         rher = True
+    random_draw = random.randint(1, 11)
+    print()
+    if random_draw == 11:
+        random_draw = "jack"
+        vitality_potion = vitality_potion + 1
+    if random_draw == 10:
+        random_draw = "10 of diamonds"
+        dirt = dirt + 1
+    if random_draw == 9:
+        random_draw = "9 of diamonds"
+        death_potion = death_potion + 1
+    if random_draw == 8:
+        random_draw = "8 of spades"
+        lucky_coin = lucky_coin + 1
+    if random_draw == 7:
+        random_draw = "7 of spades"
+        sanity_potion = sanity_potion + 1
+    if random_draw == 6:
+        random_draw = "6 of hearts"
+        flash_poitions = flash_poitions + 1
+    if random_draw == 5:
+        random_draw = "5 of spades"
+        focus_potion = focus_potion + 1
+    if random_draw == 4:
+        random_draw = "4 of diamonds"
+        defense_potion = defense_potion + 1
+    if random_draw == 3:
+        random_draw = "3 of clubs"
+        immortality_potion = immortality_potion + 1
+    if random_draw == 2:
+        random_draw = "2 of hearts"
+        strength_potion = strength_potion + 1
+    if random_draw == 1:
+        random_draw = "1 of clubs"
+        health_potion = health_potion + 1
+    if random_draw == 0:
+        random_draw = "blank"
+    slow_scroll(f"you draw a {random_draw}.")
+    print()
 if skip == "N":
  slow_scroll("you sit on your chair. on the porch of your dads run-down house with your little sister on the chair opposite to you. She looks at her cards on the table, besides the hidden card she's got a 17. though her nervous habit of biting her lip indicates she's going to lose. looking at your cards you've got a 21. you look out on the street. an odd mist flooding the streets, though the town remains moving. The kingdom of Rondon is always moving. a weird smell you don't recognize begins to fill your nostrils. you see a figure walking up to the porch, clearing from the mist it's clear your father has returned from work. you look down at your cards, it's your turn...")
  print()
- slow_scroll("(draw) and lose\n(hold) and win *input choices in (parenthesis)*")
+ slow_scroll("(draw) and lose\n(hold) and win *input choices are in (parenthesis)*")
  print()
- draw = input("")
+ skip_on = False
+ while skip_on == False:
+  draw = input("")
+  if draw == "draw" or draw == "hold":
+      skip_on = True
  os.system('cls')
  print("-----------------------------------------------------------------")
  print()
  if draw == "draw":
       random_draw = random.randint(1, 11)
+      if random_draw == 11:
+          random_draw = "jack"
+          vitality_potion = vitality_potion + 1
+      if random_draw == 10:
+          random_draw = "10 of diamonds"
+          dirt = dirt + 1
+      if random_draw == 9:
+          random_draw = "9 of diamonds"
+          death_potion = death_potion + 1
+      if random_draw == 8:
+          random_draw = "8 of spades"
+          lucky_coin = lucky_coin + 1
+      if random_draw == 7:
+          random_draw = "7 of spades"
+          sanity_potion = sanity_potion + 1
+      if random_draw == 6:
+          random_draw = "6 of hearts"
+          flash_poitions = flash_poitions + 1
+      if random_draw == 5:
+          random_draw = "5 of spades"
+          focus_potion = focus_potion + 1
+      if random_draw == 4:
+          random_draw = "4 of diamonds"
+          defense_potion = defense_potion + 1
+      if random_draw == 3:
+          random_draw = "3 of clubs"
+          immortality_potion = immortality_potion + 1
+      if random_draw == 2:
+          random_draw = "2 of hearts"
+          strength_potion = strength_potion + 1
+      if random_draw == 1:
+          random_draw = "1 of clubs"
+          health_potion = health_potion + 1
+      if random_draw == 0:
+          random_draw = "blank"
       slow_scroll(f"you decide to draw, drawing a {random_draw}.")
       print()
       slow_scroll("as you look up with a slight smile you hear heavy footsteps pass from behind you. your little sisters gaze downturned...")
@@ -195,7 +301,11 @@ if skip == "N":
  print()
  while sis_on == False:
      print()
-     sis = input("")
+     skip_on = False
+     while skip_on == False:
+      sis = input("")
+      if sis == "1" or sis == "2" or sis == "3":
+          skip_on = True
      os.system('cls')
      print("-----------------------------------------------------------------")
      print()
@@ -226,13 +336,17 @@ if skip == "N":
  print()
  slow_scroll("turn your fear to DESTRUCTION and attack the figure - 1")
  print()
- slow_scroll("turn your fear to LOVE and try to heal the small figure - 2")
+ slow_scroll("turn your fear to LOVE and try to heal the small figure (WIP) - 2")
  print()
  slow_scroll("channel your fear and run - 3")
  print()
  print()
  while fear_on == False:
-  fear = input("")
+  skip_on = False
+  while skip_on == False:
+   fear = input("")
+   if fear == "1" or fear == "2" or fear == "3":
+       skip_on = True
   os.system('cls')
   print("-----------------------------------------------------------------")
   print()
@@ -253,12 +367,17 @@ if skip == "N":
       print()
       print()
       while gro_goroth_fear_on == False:
-       gro_goroth_fear = input("(Y/N): ").upper()
+       skip_on = False
+       while skip_on == False:
+        gro_goroth_fear = input("(Y/N):").upper()
+        if gro_goroth_fear == "Y" or skip == "N":
+            skip_on = True
        os.system('cls')
        print("-----------------------------------------------------------------")
        print()
        if gro_goroth_fear == "N":
            slow_scroll("you think no as the fear leaves. with your fingers till around his throat, you squeeze down... beginning to choke him as he reaches at his throat. before turning his hands downward and instead choking you... slamming your head into the ground until you can't hold your grip much longer... you try to breathe but can't... you died")
+           next_turn = input("")
            sys.exit()
        if gro_goroth_fear == "Y":
            slow_scroll("you think yes as the presence leaves. a trace remaining. with your fingers in the puddle of blood the ripples return, so does the fire, so does your father. as you raise you hand from the blood a series of blades begin to materialize from the blood. a katana, broad sword, daggar, nagikaba. dozens on different blades shoot up from the puddle as you reach for your father and all the blades follow. piercing him. blood speeds from his various wounds. especially his neck wound as he clutches his throat. the pressure is to no avail as he falls to the side...")
@@ -277,7 +396,11 @@ if skip == "N":
       print()
       slow_scroll("[do you love me?]")
       print()
-      love = input("(Y/N): ").upper()
+      skip_on = False
+      while skip_on == False:
+       love = input("(Y/N):").upper()
+       if love == "Y" or love == "N":
+           skip_on = True
       os.system('cls')
       print("-----------------------------------------------------------------")
       print()
@@ -309,12 +432,17 @@ if skip == "N":
       print()
       print()
       while rher_fear_on == False:
-       rher_fear = input("(Y/N): ").upper()
+       skip_on = False
+       while skip_on == False:
+        rher_fear = input("(Y/N):").upper()
+        if rher_fear == "Y" or rher_fear == "N":
+            skip_on = True
        os.system('cls')
        print("-----------------------------------------------------------------")
        print()
        if rher_fear == "N":
            slow_scroll("you think no... your dad pauses... a look of horror and disgust on his face as he begins to run away... from you. though you cannot see yourself as both your eyes see a faint static that grows alongside a burning pain in your heart. you clutch at your transforming body as your mind slips into insanity.")
+           next_turn = input("")
            sys.exit()
        if rher_fear == "Y":
            slow_scroll("you think yes as the static increases. you try to shove your dad off you with you left hand. as you do your left eye stings slightly...")
@@ -326,7 +454,11 @@ if skip == "N":
             print()
             slow_scroll("HATRED - 1\nDEATH - 2\nFEAR - 3")
             print()
-            rher_fear = input("").upper()
+            skip_on = False
+            while skip_on == False:
+             rher_fear = input("")
+             if rher_fear == "1" or rher_fear == "2" or rher_fear == "3":
+                 skip_on = True
             os.system('cls')
             print("-----------------------------------------------------------------")
             print()
@@ -352,6 +484,9 @@ if skip == "N":
  print()
  slow_scroll("the unfamiliar mist carrying that retched sent from earlier creeps into your vision... you grow weak... eventually you close your eyes")
  print()
+ next_turn = input("")
+ os.system('cls')
+ print("-----------------------------------------------------------------")
 while die_end_time == 0:
  def slow_scroll(str):
          for letter in str:
@@ -371,20 +506,18 @@ while die_end_time == 0:
  print()
  print()
  die_input = input("(Y/N): ").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if die_input == "Y":
     print()
     slow_scroll("you make your way to the exit... an extreme fatigue washes over you as your eyelids grow heavy... against your will, your eyes close... it smells retched.")
-    time.sleep(2)
+    time.sleep(5)
     print()
  if die_input == "N":
     print()
     die_end_time = die_end_time + 1
+ os.system('cls')
 slow_scroll("As you traverse the dungeons of Fear & Hunger you come across two corpses. the corpse on the left seems decapitated with its head still rolling before coming to a stop. the corpse on the right has a fresh laceration, her blood staining the ground you stand on. the chest of the corpse is still rising and falling...")
 next_turn = input("")
-os.system('cls')
-print("-----------------------------------------------------------------")
 print()
 print()
 slow_scroll("As you take a step towards the barely alive woman, the once rolling head now squirms to the decapitated corpse on the left. It slithers inside as the corpse, now reanimated, stands up. he locks eyes with you through its matted hair")
@@ -412,13 +545,7 @@ if rher == True:
     print("-------------------------------------")
     next_turn = input("")
 if rher == True:
-    slow_scroll("-OLD GOD OF TRICKERY-\ninstall: automatically equipped at no expense")
-    print()
-    print()
-    print()
-    print("-------------------------------------")
     static_bar = True
-    next_turn = input("")
 if rher == True:
     slow_scroll("-OLD GOD OF TRICKERY-\nextract: when on the brink of insanity release all static charge in a AOE attack. momentarily stunning enemies for 2 turns and reseting your mental. costs some focus.")
     print()
@@ -454,22 +581,36 @@ if gro_goroth == True:
     print("-------------------------------------")
     next_turn = input("")
 if gro_goroth == True:
-    slow_scroll("-OLD GOD OF DESTRUCTION-\nFREE\nbloodcurdle: after hitting a critical with your normal attack. lick the blood off your blade and cause the enemies blood to be still. freezing the enemy for 3 turns. costs some focus")
+    slow_scroll("-OLD GOD OF DESTRUCTION-\nFREE\nbloodcurdle: after hitting a critical with your normal attack. lick the blood off your blade and cause the enemies blood to be still. freezing the enemy for 3 turns. costs some focus\nPASSIVE")
     print()
     print()
     print()
     print("-------------------------------------")
     next_turn = input("")
 if sylvian == True:
+ slow_scroll("-OLD GOD OF LOVE-\nlife steal: sharpen your nails and plunge them into the heart of your enemy. dealing damage and returning health... costs moderate focus\nwhen used in tangent to reverse cursed mastery a new skill is learnt...")
+ print()
+ print()
+ print()
+ print("-------------------------------------")
+ next_turn = input("")
+if sylvian == True:
+ slow_scroll("-OLD GOD OF LOVE-\ninvulnerability: temporarily pray to sylvian. granting a turns worth of immortality. allowing the user to tank any physical attack... costs moderate focus")
+ print()
+ print()
+ print()
+ print("-------------------------------------")
+ next_turn = input("")
+if sylvian == True:
  slow_scroll("-OLD GOD OF LOVE-\nreverse cursed healing: a technique where energy is used to reverse the state of your body. acting as a healing agent. although difficult at first, proficiency is quickly learned and thus the healing effects last longer. costs a relative amount of focus...")
  print()
  print()
  print()
+ print("-------------------------------------")
  next_turn = input("")
 slow_scroll("do you want skill *black flash*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
-os.system('cls')
 print("-----------------------------------------------------------------")
 if skill_input_choice == "Y" and turns_skill_amount != 3:
     black_flash = True
@@ -482,7 +623,6 @@ if rher == True:
  slow_scroll("do you want skill *infinity*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      print()
@@ -495,7 +635,6 @@ if rher == True:
  slow_scroll("do you want skill *extract*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      print()
@@ -507,7 +646,6 @@ if rher == True:
 slow_scroll("do you want skill *domain expansion: malevolent shrine*? (Y/N)")
 print()
 skill_input_choice = input("").upper()
-os.system('cls')
 print("-----------------------------------------------------------------")
 if skill_input_choice == "Y" and turns_skill_amount != 3:
     print()
@@ -524,7 +662,6 @@ if rher == True:
  slow_scroll("do you want skill *implant*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      implant = True
@@ -541,7 +678,6 @@ if gro_goroth == True:
  slow_scroll("do you want skill *piercing blood*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      piercing_blood = True
@@ -558,7 +694,6 @@ if gro_goroth == True:
  slow_scroll("do you want skill *bloodcurdle*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      bloodcurdle = True
@@ -574,7 +709,6 @@ if gro_goroth == True:
  slow_scroll("do you want skill *convergance*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
      convergance = True
@@ -588,10 +722,41 @@ if gro_goroth == True:
     print()
     print()
 if sylvian == True:
- slow_scroll("do you want skill *reverse cursed healing*?")
+ slow_scroll("do you want skill *life steal*? (Y/N)")
  print()
  skill_input_choice = input("").upper()
- os.system('cls')
+ print("-----------------------------------------------------------------")
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+    print()
+    life_steal = True
+    slow_scroll("life steal equiped")
+    print()
+    print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+print()
+if sylvian == True:
+ slow_scroll("do you want skill *invoulnerability*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
+ print("-----------------------------------------------------------------")
+ if skill_input_choice == "Y" and turns_skill_amount != 3:
+    print()
+    invoulnerability = True
+    slow_scroll("invoulnerability equiped")
+    print()
+    print()
+ if skill_input_choice == "Y" and turns_skill_amount == 3:
+    slow_scroll(">max skills equipped<")
+    print()
+    print()
+print()
+if sylvian == True:
+ slow_scroll("do you want skill *reverse cursed healing*? (Y/N)")
+ print()
+ skill_input_choice = input("").upper()
  print("-----------------------------------------------------------------")
  if skill_input_choice == "Y" and turns_skill_amount != 3:
     print()
@@ -604,9 +769,9 @@ if sylvian == True:
     print()
     print()
 print()
-slow_scroll("you engage in combat")
+slow_scroll("you engage in combat...")
 print()
-time.sleep(2)
+time.sleep(1)
 os.system('cls')
 while enemy_health > 1 and player_health > 1:
   turns = turns + 1
@@ -626,7 +791,7 @@ while enemy_health > 1 and player_health > 1:
               print()
               slow_scroll("static fills your vision. the sound in your ears. the wind no longer felt on your skin... you feel nothing... you died")
               print()
-              time.sleep(5)
+              next_turn = input("")
               sys.exit()
           print()
           slow_scroll(f"your head hurts... you take {damage} damage")
@@ -639,8 +804,8 @@ while enemy_health > 1 and player_health > 1:
               print()
               slow_scroll("static fills your vision. the sound in your ears. the wind no longer felt on your skin... you feel nothing... you died")
               print()
-              time.sleep(5)
               sys.exit()
+              next_turn = input("")
           print()
           slow_scroll(f"your mental deteriorates... you take {damage} damage")
           print()
@@ -652,7 +817,7 @@ while enemy_health > 1 and player_health > 1:
               print()
               slow_scroll("static fills your vision. the sound in your ears. the wind no longer felt on your skin... you feel nothing... you died")
               print()
-              time.sleep(5)
+              next_turn = input("")
               sys.exit()
           print()
           slow_scroll(f"your mind is shattering... you take {damage} damage")
@@ -714,7 +879,11 @@ while enemy_health > 1 and player_health > 1:
        slow_scroll("[can you move, lady?] *3*")
       print()
       if lady_death == False:
-       slow_scroll("or kill the lady *4*")
+       slow_scroll("kill the lady *4*")
+       print()
+      if lady_death == False and life_steal == True and lady_nom == True:
+       slow_scroll("or drain life force from the lady *5*")
+       print()
       print()
       print()
       input_player_talk = input("")
@@ -730,12 +899,26 @@ while enemy_health > 1 and player_health > 1:
           slow_scroll("you walk over to the lady and simply place your sword in her throat")
           print()
           slow_scroll("she looks up with a mixture of resentment & relief... she's dead.")
+          print()
           lady_death = True
+      if input_player_talk == "5" and lady_death == False and lady_nom == True:
+          slow_scroll("the quickly kneel to the lady. grab her forearm in both hands and feel your k9's elongate as you interlock your jaw around her flesh... as you hear the creature approaching you unhinge your mouth. a string of saliva connecting your teeth to a deeply imprinted bite mark on her forearm... you feel fruther from death...")
+          print()
+          print()
+          player_health_heal = random.randint(40, 60)
+          player_health = player_health + player_health_heal
+          slow_scroll(f"you healed {player_health_heal} health!")
+          print()
+          print()
+          slow_scroll("you notice the creature is now stepped in front of the lady. preventing furthing healing.")
+          print()
+          lady_nom = False
+          bleeding_player = False
       print()
   if input_player == "item":
       item_timer = item_timer + 1
       print()
-      slow_scroll(f"you have {health_potion} health potions *1*")
+      slow_scroll(f"you have...\n{health_potion} potions of health *1*\n{strength_potion} potions of strength *2*\n{lucky_coin} lucky coins *3*\n{flash_poitions} potions of flash *4*\n{dirt} pieces of dirt *5*\n{vitality_potion} potions of vitality *6*\n{immortality_potion} potions of immortality *7*\n{death_potion} potions of death *8*\n{focus_potion} potions of focus *9*\n{sanity_potion} potions of sanity *10*\n{defense_potion} potions of defense *11*")
       print()
       if item_timer == 1:
           slow_scroll("enter the corresponding number in the **. for example, to use helth potion you'd enter 1.")
@@ -746,7 +929,9 @@ while enemy_health > 1 and player_health > 1:
           print()
           slow_scroll("you hurridly pull the health potion out and drink it... it's sweet...")
           print()
-          player_health_heal = random.randint(40, 60)
+          player_health_heal = random.randint(30, 50)
+          if sylvian == True:
+              player_health_heal = player_health_heal * 1.5
           print()
           slow_scroll(f"you healed {player_health_heal} HP!")
           print()
@@ -755,6 +940,12 @@ while enemy_health > 1 and player_health > 1:
               slow_scroll("your bleeding wound is healing...")
               print()
               bleeding_player = False
+      if item_input == "2" and strength_potion >= 1:
+          strength_potion = strength_potion - 1
+          print()
+          slow_scroll("the pull out the strength potion. it's weirdly heavy as you drink it... it's viscus...")
+          print()
+          strength_potion_turns = strength_potion_turns + 3
   if input_player == "skill":
       skill_timer = skill_timer + 1
       first_time_skill = True
@@ -789,7 +980,7 @@ while enemy_health > 1 and player_health > 1:
       if bloodcurdle == True and crit_on == True:
           slow_scroll("[bloodcurdle] - 7 *1*")
           print()
-      if extract == True and static_bar_timer >= 3:
+      if extract == True and static_bar_timer >= 4:
           slow_scroll("[extract] - 8 *1*")
           print()
       if implant == True and static_bar_timer >= 1 and static_bar_timer != 4:
@@ -798,7 +989,7 @@ while enemy_health > 1 and player_health > 1:
       print()
       print()
       if skill_timer == 1:
-          slow_scroll("enter corresponding number. for example, infinity would be 1 black flash would be 2. and the number within the ** is the focus charge required to use the skill. for example, for black flash you'd enter 2 if you had the required charge within the ** that being 1. so if you've got no charge, focus.")
+          slow_scroll("enter corresponding number. for example, black flash would be an input of 2. and the number within the ** is the focus charge required to use the skill. for example, for black flash you'd enter 2 and only be able to use it if you've got the required *1* focus. so if you've got no charge... take a deep breath... focus.")
           print()
           print()
       input_player_skill = input("")
@@ -834,6 +1025,8 @@ while enemy_health > 1 and player_health > 1:
               damage = damage * 1.5
           if gro_goroth == True:
               damage = damage * 1.25
+          if strength_potion_turns >= 1:
+              damage = damage * 1.25
           if skill_timer == 1:
            damage = round(damage)
            slow_scroll(f"you force blood out the palms of you hands. you take {damage_player} damage. the blood remains in the air for a moment before you place both hands around the blood and compress with all your might. then opening a small hole from which the enemy stands. the piercing blood shoots out! dealing {damage} damage!")
@@ -849,13 +1042,15 @@ while enemy_health > 1 and player_health > 1:
              print()
              slow_scroll("you aren't focused enough...")
              print()
-      if input_player_skill == "8" and extract == True:
+      if input_player_skill == "8" and extract == True and static_bar_timer >= 4:
          if focus >= 1:
           focus = focus - 1
           damage = random.randint(15, 30)
           if enemy_rot == True:
               damage = damage * 1.5
           if gro_goroth == True:
+              damage = damage * 1.25
+          if strength_potion_turns >= 1:
               damage = damage * 1.25
           damage = round(damage)
           if extract_first == False:
@@ -980,6 +1175,8 @@ while enemy_health > 1 and player_health > 1:
             damage = damage * 1.5
         if gro_goroth == True:
             damage = damage * 1.25
+        if strength_potion_turns >= 1:
+            damage = damage * 1.25
         damage = round(damage)
         slow_scroll(f"you slowly bring your arm back, and throw it in the direction of the enemy! the space between the enemy splits in two, dealing {damage} damage")
         shrine = False
@@ -1011,6 +1208,8 @@ while enemy_health > 1 and player_health > 1:
                       damage = damage * 1.5
                   if gro_goroth == True:
                       damage = damage * 1.25
+                  if strength_potion_turns >= 1:
+                      damage = damage * 1.25
                   damage = round(damage * 3)
                   if focus >= 1:
                       damage = round(damage * 1.3)
@@ -1033,6 +1232,8 @@ while enemy_health > 1 and player_health > 1:
                       damage = damage * 1.5
                   if gro_goroth == True:
                       damage = damage * 1.25
+                  if strength_potion_turns >= 1:
+                      damage = damage * 1.25
                   damage = round(damage * 3)
                   if infinity_counter == True:
                       damage = damage * 2
@@ -1049,6 +1250,8 @@ while enemy_health > 1 and player_health > 1:
                   if enemy_rot == True:
                       damage = damage * 1.5
                   if gro_goroth == True:
+                      damage = damage * 1.25
+                  if strength_potion_turns >= 1:
                       damage = damage * 1.25
                   if infinity_counter == True:
                       damage = damage * 2
@@ -1088,6 +1291,8 @@ while enemy_health > 1 and player_health > 1:
                   if enemy_rot == True:
                       damage = damage * 1.5
                   if gro_goroth == True:
+                      damage = damage * 1.25
+                  if strength_potion_turns >= 1:
                       damage = damage * 1.25
                   damage = round(damage * 2.5)
                   if infinity_counter == True:
@@ -1134,7 +1339,7 @@ while enemy_health > 1 and player_health > 1:
           print()
           slow_scroll("you make your way to the exit... an extreme fatigue washes over you as your eyelids grow heavy... you close your eyes...")
           print()
-          time.sleep(3)
+          next_turn = input("")
           sys.exit()
       else:
           slow_scroll("your attempt was unsuccesful...")
@@ -1159,6 +1364,8 @@ while enemy_health > 1 and player_health > 1:
                damage = damage * 1.5
            if gro_goroth == True:
                damage = damage * 1.25
+           if strength_potion_turns >= 1:
+               damage = damage * 1.25
            damage = round(damage)
            if black_flash_profiency == 1:
                print()
@@ -1175,6 +1382,8 @@ while enemy_health > 1 and player_health > 1:
            if enemy_rot == True:
                damage = damage * 1.5
            if gro_goroth == True:
+               damage = damage * 1.25
+           if strength_potion_turns >= 1:
                damage = damage * 1.25
            damage = round(damage)
            if black_flash_profiency == 1:
@@ -1220,6 +1429,8 @@ while enemy_health > 1 and player_health > 1:
       if enemy_rot == True:
           damage = damage * 1.5
       if gro_goroth == True:
+          damage = damage * 1.25
+      if strength_potion_turns >= 1:
           damage = damage * 1.25
       damage = round(damage)
       if black_flash_profiency == 2:
@@ -1368,17 +1579,23 @@ while enemy_health > 1 and player_health > 1:
                convergance_1 = damage * 1.5
            if gro_goroth == True:
                convergance_1 = convergance_1 * 1.25
+           if strength_potion_turns >= 1:
+               convergance_1 = convergance_1 * 1.25
            convergance_1 = round(convergance_1)
            convergance_2 = random.randint(10, 20)
            if enemy_rot == True:
                convergance_2 = damage * 1.5
            if gro_goroth == True:
                convergance_2 = convergance_2 * 1.25
+           if strength_potion_turns >= 1:
+               convergance_2 = convergance_2 * 1.25
            convergance_2 = round(convergance_2)
            convergance_3 = random.randint(10, 20)
            if enemy_rot == True:
                convergance_3 = damage * 1.5
            if gro_goroth == True:
+               convergance_3 = convergance_3 * 1.25
+           if strength_potion_turns >= 1:
                convergance_3 = convergance_3 * 1.25
            convergance_3 = round(convergance_3)
            enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
@@ -1441,17 +1658,23 @@ while enemy_health > 1 and player_health > 1:
                 convergance_1 = damage * 1.5
             if gro_goroth == True:
                 convergance_1 = convergance_1 * 1.25
+            if strength_potion_turns >= 1:
+                convergance_1 = convergance_1 * 1.25
             convergance_1 = round(convergance_1)
             convergance_2 = random.randint(10, 20)
             if enemy_rot == True:
                 convergance_2 = damage * 1.5
             if gro_goroth == True:
                 convergance_2 = convergance_2 * 1.25
+            if strength_potion_turns >= 1:
+                convergance_2 = convergance_2 * 1.25
             convergance_2 = round(convergance_2)
             convergance_3 = random.randint(10, 20)
             if enemy_rot == True:
                 convergance_3 = damage * 1.5
             if gro_goroth == True:
+                convergance_3 = convergance_3 * 1.25
+            if strength_potion_turns >= 1:
                 convergance_3 = convergance_3 * 1.25
             convergance_3 = round(convergance_3)
             enemy_health = enemy_health - convergance_1 - convergance_2 - convergance_3
@@ -1561,7 +1784,7 @@ while enemy_health > 1 and player_health > 1:
              print()
              slow_scroll("you've died...")
              print()
-             time.sleep(5)
+             next_turn = input("")
              sys.exit()
              print()
             elif coin_flip_result == True or coin_flip_result_2 == True:
@@ -1617,7 +1840,7 @@ while enemy_health > 1 and player_health > 1:
            print()
            slow_scroll("you've died...")
            print()
-           time.sleep(5)
+           next_turn = input("")
            sys.exit()
            print()
           elif coin_flip_result == True:
@@ -1630,7 +1853,7 @@ while enemy_health > 1 and player_health > 1:
             print()
             slow_scroll("you've died...")
             print()
-            time.sleep(5)
+            next_turn = input("")
             sys.exit()
    if input_enemy == 5 and enemy_charge == False:
        slow_scroll("the thing lowers its stance & brings its arms back...")
@@ -1704,6 +1927,7 @@ while enemy_health > 1 and player_health > 1:
   elif enemy_freeze <= 0 and enemy_freeze_rher == True:
       enemy_freeze_rher = False
       print()
+  strength_potion_turns = strength_potion_turns - 1
   static_bar_timer = static_bar_timer + 1
   next_turn = input("")
   os.system('cls')
@@ -1771,7 +1995,7 @@ if player_health >= 1:
               print()
 else:
  slow_scroll("you take your last breath... you've died")
- time.sleep(3)
+ next_turn = input("")
  sys.exit()
 time.sleep(2)
 print()
@@ -1863,6 +2087,7 @@ if woman_member == False:
         print()
      if lady_talk_input_1 == "4":
         slow_scroll("you turn around... the stench of blood replaced by the familiar untouchable smell... followed by your body feeling tired... then your eye lids feel heavy... then your legs as you fall... you close your eyes...")
+        next_turn = input("")
         sys.exit()
 elif woman_member == True:
     print()
@@ -1971,7 +2196,7 @@ elif woman_member == True:
        if lady_talk_input_2 == "1":
           slow_scroll(f"you continue on... a defeated sigh is heard from behind you as the aroma intensifies\n[alright well... im going in but- thanks for saving me, {name}] the lady says as her steps echo down the hall...\nthe smell is beginning to make you nauseous...\nyou feel tired...\nyou feel exhausted...\nyou fall to the floor as you close your eyes...")
           print()
-          time.sleep(4)
+          next_turn = input("")
           sys.exit()
        if lady_talk_input_2 == "2":
            slow_scroll("[...I \I can't. I need to... I just can't]\nshe turns around, with a defeated sigh, and glances behind at you\n[whether you come or not im going in... I'd like you to come...]\nshe begins to walk in...")
@@ -1986,6 +2211,7 @@ elif woman_member == True:
            print()
            if lady_talk_input_3 == "Y":
                slow_scroll("you continue to leave... as a familiar stench begins to seep into your senses... your eyelids growing heavy as does your body... you fall and hit your head... passing out...")
+               next_turn = input("")
                sys.exit()
            if lady_talk_input_3 == "N":
                slow_scroll("you turn around and jog up to her as she turns around. a relived smile spreading on her face. she nods with appreciation as you both walk on with determination")
@@ -2004,6 +2230,7 @@ elif woman_member == True:
            print()
            if lady_talk_input_3 == "Y":
                slow_scroll("you continue to leave... as a familiar stench begins to seep into your senses... your eyelids growing heavy as does your body... you fall and hit your head... passing out...")
+               next_turn = input("")
                sys.exit()
            if lady_talk_input_3 == "N":
                print()
@@ -2039,4 +2266,4 @@ elif woman_member == True:
     if lady_talk_input_1 == "5":
        slow_scroll("[so... name's Em-]\nshe looks up at you akwardly\n[oh- yes?]")
     print()
-time.sleep(5)
+next_turn = input("")
